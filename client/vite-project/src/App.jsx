@@ -1,6 +1,11 @@
 // Importing BrowserRouter, Routes, and Route from react-router-dom to handle moving between pages without refreshing the browser
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
+// Importing the page components so the routes know what to display
+import Home from './pages/Home'
+import Account from './pages/Account'
+import Quiz from './pages/Quiz'
+
 // App is the main component that wraps the whole app in a BrowserRouter
 // Route "/" shows the Home page
 // Route "/account" shows the Account page
@@ -9,9 +14,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<h1>Home</h1>} />
-        <Route path="/account" element={<h1>Account</h1>} />
-        <Route path="/quiz" element={<h1>Quiz</h1>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/quiz" element={<Quiz />} />
       </Routes>
     </BrowserRouter>
   )
