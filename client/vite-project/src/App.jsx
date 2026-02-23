@@ -1,35 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// Importing BrowserRouter, Routes, and Route from react-router-dom to handle moving between pages without refreshing the browser
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
+// Importing the page components so the routes know what to display
+import Home from './pages/Home'
+import Account from './pages/Account'
+import Quiz from './pages/Quiz'
+
+// App is the main component that wraps the whole app in a BrowserRouter
+// Route "/" shows the Home page
+// Route "/account" shows the Account page
+// Route "/quiz" shows the Quiz page
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/quiz" element={<Quiz />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
+// Exporting App so it can be used in main.jsx
 export default App
