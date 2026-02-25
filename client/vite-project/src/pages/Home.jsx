@@ -1,6 +1,22 @@
 // Home page component - will be built out later
 function Home() {
-  return <h1>Home Page</h1>
+  return 
+  <div id="Home-page">
+    <section id="hero">
+      <div id="hero-text">
+        
+      </div>
+      <div id="topic-bubbles">
+        
+      </div>
+      <div id="begin-banner">
+
+      </div>
+      <div id="description-cards">
+        
+      </div>
+    </section>
+  </div>
 }
 
 // Exporting Home so it can be used in App.jsx
