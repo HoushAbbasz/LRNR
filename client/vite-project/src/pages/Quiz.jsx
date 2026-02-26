@@ -30,10 +30,27 @@ function Quiz() {
   // e.preventDefault stops the page from refreshing
   // console.log shows the current selections in the browser console for testing
   // Will eventually send quizConfig to the backend to generate the quiz
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('Quiz config submitted:', quizConfig)
-  }
+const handleSubmit = async (e) => {
+   e.preventDefault();
+   console.log('Quiz config submitted:', quizConfig);
+  
+   try {
+     const response = await fetch("http://localhost:3000/api/generateQuiz", {
+       method: "POST",
+       headers: { "Content-Type": "application/json" },
+       body: JSON.stringify(quizConfig),
+     });
+
+
+     const data = await response.json();
+     console.log("Questions:", data.questions);
+
+
+   } catch (error) {
+     console.error("Error fetching quiz:", error);
+   }
+ }
+
 
   return (
     <div>
