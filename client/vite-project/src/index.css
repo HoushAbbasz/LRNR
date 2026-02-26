@@ -1,1 +1,82 @@
+/* ====== VARIABLES ====== */
+:root {
+  --background-color: #0d0d0d;
+  --light-background: #141414;
+  --white: #fefefe; /* text color */
+  --dark-red: #4b161c;
+  --orange: #f37630;
+  --vibrant-orange: #fe6001; /* button */
+}
+
+/* ====== FONTS ====== */
+@font-face {
+    font-family: "akira";
+    src: url('/fonts/akira_expanded/AkiraExpandedDemo.otf') format('opentype');
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* ====== HOME PAGE ====== */
+
+#Home-page {
+  background-color: var(--light-background);
+  margin: 0;
+  padding: 0;
+}
+#hero {
+  background: #F33626;
+  background: linear-gradient(107deg, rgba(243, 54, 38, 1) 1%, rgba(243, 115, 47, 1) 11%, rgba(243, 118, 48, 1) 60%, rgba(201, 45, 38, 1) 79%, rgba(75, 22, 28, 1) 100%);
+  height: 75vh;
+  color: var(--white);
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 0;
+  border-radius: 0 0 40px 40px;
+}
+#hero-text h2 {
+    font-family: "akira";
+    font-size: 70px;
+}
+#topic-bubbles {
+    display: none;
+}
+#topic-carousel {
+    height: 200px; 
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "akira";
+    border-radius: 0 0 40px 40px;
+}
+#begin-banner {
+    height: 300px;
+    background-color: var(--background-color);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "akira";
+}
+#begin-banner button {
+    padding: 2px;
+    border-radius: 20px;
+    text-align: center;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    background-color: var(--vibrant-orange);
+}
+#begin-banner button img {
+    width: 20px; 
+    height: auto;
+    
+}
 

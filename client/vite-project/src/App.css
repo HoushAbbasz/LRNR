@@ -1,16 +1,4 @@
-:root {
-  --background-color: #0d0d0d;
-  --light-background: #141414;
-  --white: #fefefe; /* text color */
-  --dark-red: #4b161c;
-  --orange: #f37630;
-}
-body {
+* {
   margin: 0;
   padding: 0;
-}
-
-/* ====== HOME PAGE ====== */
-#Home-page {
-  background-color: var(--background-color);
 }
