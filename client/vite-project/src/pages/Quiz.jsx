@@ -37,7 +37,7 @@ function Quiz() {
 
   return (
     <div>
-      <h1>Quiz Generation Options</h1>
+      <h1>Quiz Generator</h1>
       <p>Please choose your preferences below to generate your personalized quiz</p>
 
       <form onSubmit={handleSubmit}>
