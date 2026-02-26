@@ -80,3 +80,19 @@ body {
     
 }
 
+
+
+/* 
+=======================
+====== QUIZ PAGE ====== 
+=======================
+
+*/ 
+
+body, html {
+  margin: 0;
+  padding: 0;
+
+  background: linear-gradient(262deg, rgba(77, 0, 0, 1) 40%, rgba(236, 33, 50, 1) 77%, rgba(253, 92, 29, 1) 89%, rgba(252, 173, 69, 1) 100%);
+  background-color: #4d0000;
+}
