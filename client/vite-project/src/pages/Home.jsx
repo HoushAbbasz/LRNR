@@ -1,7 +1,8 @@
 // Home page component - will be built out later
 function Home() {
-  return 
+  return (
   <div id="Home-page">
+    <h2>THIIS IS THE HOME PAGE</h2>
     <section id="hero">
       <div id="hero-text">
         
@@ -17,6 +18,7 @@ function Home() {
       </div>
     </section>
   </div>
+  )
 }
 
 // Exporting Home so it can be used in App.jsx
