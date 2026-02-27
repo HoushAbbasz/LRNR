@@ -8,7 +8,7 @@ const questionCounts = ['5', '10', '15']
 const styles = ['normal', 'master oogway', "1940's gangster", "like I'm an 8 year old", 'jedi', 'captain jack sparrow', 'matthew mcconaughey']
 
 // Quiz page - contains the form for generating a personalized quiz
-function Quiz() {
+function Quiz({ onStart }) {
 
   // useState tracks what the user selects in each dropdown
   // quizConfig holds all 4 selections, setQuizConfig updates them
@@ -34,16 +34,20 @@ const handleSubmit = async (e) => {
    e.preventDefault();
    console.log('Quiz config submitted:', quizConfig);
   
+
    try {
+    // Sends a POST request to the backend with the quiz config as the body
      const response = await fetch("http://localhost:3000/api/generateQuiz", {
        method: "POST",
        headers: { "Content-Type": "application/json" },
+       // Converts the quizConfig object to a JSON string for the request body
        body: JSON.stringify(quizConfig),
      });
 
-
+     // Parses the JSON response from the backend into a JavaScript object
      const data = await response.json();
-     console.log("Questions:", data.questions);
+     // Passes the config and generated questions to the QuizFlow to trigger navigation
+     onStart(quizConfig, data.questions)
 
 
    } catch (error) {
