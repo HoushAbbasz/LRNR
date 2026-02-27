@@ -6,6 +6,8 @@
   --dark-red: #4b161c;
   --orange: #f37630;
   --vibrant-orange: #fe6001; /* button */
+  --light-grey: #ebebed; /* cards */
+  --logo: hsl(0, 0%, 38%);
 }
 
 /* ====== FONTS ====== */
@@ -13,6 +15,55 @@
     font-family: "akira";
     src: url('/fonts/akira_expanded/AkiraExpandedDemo.otf') format('opentype');
 }
+@font-face {
+    font-family: "mirage";
+    src: url('/fonts/made_mirage/Mirage.otf') format('opentype');
+}
+@font-face {
+    font-family: "arcade";
+    src: url('/fonts/arcade_ya/ARCADE_I.TTF') format('truetype');
+}
+@font-face {
+    font-family: "zt";
+    src: url('/fonts/zt_otez/ZTOtez-Regular.ttf') format('truetype');
+}
+/* ====== KEY FRAMES ======= */
+
+@keyframes scrollTopics {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+@keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 5px var(--vibrant-orange); }
+  50% { box-shadow: 0 0 20px var(--vibrant-orange), 0 0 40px var(--orange); }
+  100% { box-shadow: 0 0 5px var(--vibrant-orange); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 
 body {
   margin: 0;
@@ -42,9 +93,23 @@ body {
     font-family: "akira";
     font-size: 70px;
 }
+#hero-text p {
+    font-size: 20px;
+    font-family: "zt";
+}
+.typed-line {
+    min-height: 32px;
+    font-family: "arcade";
+}
+.cursor {
+    margin-left: -4px;
+    display: inline-block;
+    animation: blink 0.9s infinite;
+}
 #topic-bubbles {
     display: none;
 }
+/* ========= CAROUSEL ======== */
 #topic-carousel {
     height: 200px; 
     color: var(--white);
@@ -53,6 +118,31 @@ body {
     justify-content: center;
     font-family: "akira";
     border-radius: 0 0 40px 40px;
+    position: relative;
+    z-index: 999;
+    background-color: var(--light-background);
+}
+.carousel-window {
+    overflow: hidden;
+    width: 93vw;
+    position: relative;
+}
+.carousel-track {
+    display: flex;
+    gap: 16px;
+    width: max-content;
+    animation: scrollTopics 28s linear infinite;
+}
+.topic-slide {
+    min-width: 120px;
+    flex: 0 0 auto;
+    padding: 14px;
+    text-align: center;
+}
+.topic-slide img {
+    width: auto;
+    height: 50px;
+    filter: invert(100%) sepia(91%) saturate(36%) hue-rotate(207deg) brightness(110%) contrast(110%);
 }
 #begin-banner {
     height: 300px;
@@ -63,6 +153,9 @@ body {
     align-items: center;
     justify-content: center;
     font-family: "akira";
+    border-radius: 0 0 40px 40px;
+    margin-top: -30px;
+    text-align: center;
 }
 #begin-banner button {
     padding: 2px;
@@ -73,13 +166,60 @@ body {
     flex-direction: row;
     gap: 20px;
     background-color: var(--vibrant-orange);
+    color: var(--white)    
+}
+#begin-banner p {
+    margin-left: 9px;
+    font-family: "akira";
+    color: var(--background-color)
 }
 #begin-banner button img {
-    width: 20px; 
-    height: auto;
-    
+    width: 42px; 
+    height: 42px;
+    filter: invert(100%) sepia(91%) saturate(36%) hue-rotate(207deg) brightness(110%) contrast(110%);
 }
+#description-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
 
+    padding: 28px 18px;
+    background-color: var(--background-color);
+
+    margin: -30px 0;
+    justify-content: space-between;
+}
+.cards {
+    background-color: var(--light-grey);
+    border-radius: 18px;
+    padding: 22px 18px;
+    min-height: 210px;
+    max-width: 300px;
+} 
+.cards h3 {
+    margin: 0 0 14px 0;
+    line-height: 1.1;
+    text-align: center;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    font-family: "zt";
+}
+.card-accent {
+    font-family: "akira";
+    letter-spacing: 0;
+}
+.cards p {
+    margin-top: 20px;
+    line-height: 1.4;
+    font-family: "zt" !important;
+    text-align: center;
+}
+.cards p .cards-logo {
+    font-family: "akira";
+    color: var(--logo);
+    margin-bottom: 30px;
+}
 
 /* ============================================================
    ======================== QUIZ PAGE =========================
@@ -97,6 +237,8 @@ body {
   font-size: 2rem;
   text-align: center;
   margin-bottom: 0.5rem;
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
 }
 
 .quiz-subtitle {
@@ -104,6 +246,8 @@ body {
   text-align: center;
   font-size: 0.95rem;
   margin-bottom: 2rem;
+  animation: fadeInUp 0.5s ease 0.1s forwards;
+  opacity: 0;
 }
 
 /* ====== Quiz Form ====== */
@@ -121,7 +265,14 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
 }
+
+.form-group:nth-child(1) { animation-delay: 0.1s; }
+.form-group:nth-child(2) { animation-delay: 0.2s; }
+.form-group:nth-child(3) { animation-delay: 0.3s; }
+.form-group:nth-child(4) { animation-delay: 0.4s; }
 
 .form-group label {
   color: var(--white);
@@ -165,6 +316,7 @@ body {
 
 .quiz-submit-btn:hover {
   background-color: var(--orange);
+  animation: glowPulse 1.5s ease-in-out infinite;
   transition: background-color 0.2s ease;
 }
 
@@ -181,79 +333,8 @@ body {
   text-align: center;
 }
 
-/* ====== Animations ====== */
-
-/* Fade in keyframe - starts invisible and moves up slightly */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Orange glow pulse keyframe for the submit button */
-@keyframes glowPulse {
-  0% {
-    box-shadow: 0 0 5px var(--vibrant-orange);
-  }
-  50% {
-    box-shadow: 0 0 20px var(--vibrant-orange), 0 0 40px var(--orange);
-  }
-  100% {
-    box-shadow: 0 0 5px var(--vibrant-orange);
-  }
-}
-
-/* Spinner rotation keyframe */
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* ====== Fade In Form Groups ====== */
-
-/* Each form group fades in one after another using animation-delay */
-.form-group {
-  animation: fadeInUp 0.5s ease forwards;
-  opacity: 0;
-}
-
-.form-group:nth-child(1) { animation-delay: 0.1s; }
-.form-group:nth-child(2) { animation-delay: 0.2s; }
-.form-group:nth-child(3) { animation-delay: 0.3s; }
-.form-group:nth-child(4) { animation-delay: 0.4s; }
-
-/* Title and subtitle also fade in */
-.quiz-title {
-  animation: fadeInUp 0.5s ease forwards;
-  opacity: 0;
-}
-
-.quiz-subtitle {
-  animation: fadeInUp 0.5s ease 0.1s forwards;
-  opacity: 0;
-}
-
-/* ====== Glow Pulse Button ====== */
-
-/* Button pulses with orange glow on hover */
-.quiz-submit-btn:hover {
-  animation: glowPulse 1.5s ease-in-out infinite;
-  background-color: var(--orange);
-  transition: background-color 0.2s ease;
-}
-
 /* ====== Loading Spinner ====== */
 
-/* Spinner container sits inside the button */
 .spinner {
   width: 18px;
   height: 18px;
