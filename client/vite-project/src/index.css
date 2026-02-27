@@ -42,6 +42,27 @@
     50%, 100% { opacity: 0; }
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 5px var(--vibrant-orange); }
+  50% { box-shadow: 0 0 20px var(--vibrant-orange), 0 0 40px var(--orange); }
+  100% { box-shadow: 0 0 5px var(--vibrant-orange); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 
 
 body {
@@ -198,4 +219,152 @@ body {
     font-family: "akira";
     color: var(--logo);
     margin-bottom: 30px;
+}
+
+/* ============================================================
+   ======================== QUIZ PAGE =========================
+   ============================================================ */
+
+.quiz-page {
+  background-color: var(--background-color);
+  min-height: 100vh;
+  padding: 2rem 1.25rem;
+}
+
+.quiz-title {
+  font-family: "akira";
+  color: var(--white);
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+}
+
+.quiz-subtitle {
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.5s ease 0.1s forwards;
+  opacity: 0;
+}
+
+/* ====== Quiz Form ====== */
+
+.quiz-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+}
+
+.form-group:nth-child(1) { animation-delay: 0.1s; }
+.form-group:nth-child(2) { animation-delay: 0.2s; }
+.form-group:nth-child(3) { animation-delay: 0.3s; }
+.form-group:nth-child(4) { animation-delay: 0.4s; }
+
+.form-group label {
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 0.75rem;
+}
+
+.form-group select {
+  background-color: var(--light-background);
+  color: var(--white);
+  border: 1px solid var(--vibrant-orange);
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  appearance: none;
+  font-size: 1rem;
+  width: 100%;
+  cursor: pointer;
+}
+
+.form-group select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--vibrant-orange);
+}
+
+/* ====== Submit Button ====== */
+
+.quiz-submit-btn {
+  background-color: var(--vibrant-orange);
+  color: var(--background-color);
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1rem;
+  letter-spacing: 0.05rem;
+}
+
+.quiz-submit-btn:hover {
+  background-color: var(--orange);
+  animation: glowPulse 1.5s ease-in-out infinite;
+  transition: background-color 0.2s ease;
+}
+
+.quiz-submit-btn:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+/* ====== Error Message ====== */
+
+.error-message {
+  color: #ff4444;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* ====== Loading Spinner ====== */
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(0, 0, 0, 0.3);
+  border-top-color: black;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+/* ====== Tablet and Up ====== */
+
+@media (min-width: 768px) {
+  .quiz-page {
+    padding: 3rem 2rem;
+  }
+
+  .quiz-title {
+    font-size: 3rem;
+  }
+
+  .quiz-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .quiz-submit-btn {
+    width: auto;
+    align-self: center;
+    padding: 1rem 3rem;
+  }
 }
