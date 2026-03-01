@@ -63,72 +63,74 @@ function Quiz({ onStart }) {
 
   return (
     <div className="quiz-page">
+      <div className="quiz-container">
 
-      <h1 className="quiz-title">Quiz Generator</h1>
-      <p className="quiz-subtitle">Please choose your preferences below to generate your personalized quiz</p>
+        <h1 className="quiz-title">Quiz Generator</h1>
+        <p className="quiz-subtitle">Please choose your preferences below to generate your personalized quiz</p>
 
-      <form className="quiz-form" onSubmit={handleSubmit}>
+        <form className="quiz-form" onSubmit={handleSubmit}>
 
-        {/* Topic dropdown */}
-        <div className="form-group">
-          <label htmlFor="topic">Topic</label>
-          <select id="topic" name="topic" value={quizConfig.topic} onChange={handleChange} required>
-            <option value="">Select a topic</option>
-            {topics.map((topic) => (
-              <option key={topic} value={topic}>{topic}</option>
-            ))}
-          </select>
-        </div>
+          {/* Topic dropdown */}
+          <div className="form-group">
+            <label htmlFor="topic">Topic</label>
+            <select id="topic" name="topic" value={quizConfig.topic} onChange={handleChange} required>
+              <option value="">Select a topic</option>
+              {topics.map((topic) => (
+                <option key={topic} value={topic}>{topic}</option>
+              ))}
+            </select>
+          </div>
 
-        {/* Expertise dropdown */}
-        <div className="form-group">
-          <label htmlFor="expertise">Expertise Level</label>
-          <select id="expertise" name="expertise" value={quizConfig.expertise} onChange={handleChange} required>
-            <option value="">Select your level</option>
-            {expertiseLevels.map((level) => (
-              <option key={level} value={level}>{level}</option>
-            ))}
-          </select>
-        </div>
+          {/* Expertise dropdown */}
+          <div className="form-group">
+            <label htmlFor="expertise">Expertise Level</label>
+            <select id="expertise" name="expertise" value={quizConfig.expertise} onChange={handleChange} required>
+              <option value="">Select your level</option>
+              {expertiseLevels.map((level) => (
+                <option key={level} value={level}>{level}</option>
+              ))}
+            </select>
+          </div>
 
-        {/* Number of questions dropdown */}
-        <div className="form-group">
-          <label htmlFor="numQuestions">Number of Questions</label>
-          <select id="numQuestions" name="numQuestions" value={quizConfig.numQuestions} onChange={handleChange}>
-            <option value="">Select amount</option>
-            {questionCounts.map((count) => (
-              <option key={count} value={count}>{count}</option>
-            ))}
-          </select>
-        </div>
+          {/* Number of questions dropdown */}
+          <div className="form-group">
+            <label htmlFor="numQuestions">Number of Questions</label>
+            <select id="numQuestions" name="numQuestions" value={quizConfig.numQuestions} onChange={handleChange}>
+              <option value="">Select amount</option>
+              {questionCounts.map((count) => (
+                <option key={count} value={count}>{count}</option>
+              ))}
+            </select>
+          </div>
 
-        {/* Style dropdown */}
-        <div className="form-group">
-          <label htmlFor="style">Question Style</label>
-          <select id="style" name="style" value={quizConfig.style} onChange={handleChange}>
-            <option value="">Select a style</option>
-            {styles.map((style) => (
-              <option key={style} value={style}>{style}</option>
-            ))}
-          </select>
-        </div>
+          {/* Style dropdown */}
+          <div className="form-group">
+            <label htmlFor="style">Question Style</label>
+            <select id="style" name="style" value={quizConfig.style} onChange={handleChange}>
+              <option value="">Select a style</option>
+              {styles.map((style) => (
+                <option key={style} value={style}>{style}</option>
+              ))}
+            </select>
+          </div>
 
-        {/* Error message shows if the API call fails */}
-        {error && <p className="error-message">{error}</p>}
+          {/* Error message shows if the API call fails */}
+          {error && <p className="error-message">{error}</p>}
 
-        {/* Submit button shows loading spinner while waiting for the API */}
-        <button className="quiz-submit-btn" type="submit" disabled={loading}>
-          {loading ? (
-            <>
-              <span className="spinner"></span>
-              Generating Quiz...
-            </>
-          ) : (
-            'Generate Quiz'
-          )}
-        </button>
+          {/* Submit button shows loading spinner while waiting for the API */}
+          <button className="quiz-submit-btn" type="submit" disabled={loading}>
+            {loading ? (
+              <>
+                <span className="spinner"></span>
+                Generating Quiz...
+              </>
+            ) : (
+              'Generate Quiz'
+            )}
+          </button>
 
-      </form>
+        </form>
+      </div>
     </div>
   )
 }

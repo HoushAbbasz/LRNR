@@ -417,9 +417,22 @@ body {
    ============================================================ */
 
 .quiz-page {
-  background-color: var(--background-color);
+  background: linear-gradient(107deg, rgba(243, 54, 38, 1) 1%, rgba(243, 115, 47, 1) 11%, rgba(243, 118, 48, 1) 60%, rgba(201, 45, 38, 1) 79%, rgba(75, 22, 28, 1) 100%);
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 2rem 1.25rem;
+}
+
+/* ====== Quiz Container ====== */
+
+.quiz-container {
+  background-color: var(--background-color);
+  border-radius: 24px;
+  padding: 2rem 1.5rem;
+  width: 100%;
+  max-width: 600px;
 }
 
 .quiz-title {
@@ -448,8 +461,6 @@ body {
   flex-direction: column;
   gap: 1.5rem;
   width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
 }
 
 .form-group {
@@ -541,8 +552,8 @@ body {
 /* ====== Tablet and Up ====== */
 
 @media (min-width: 768px) {
-  .quiz-page {
-    padding: 3rem 2rem;
+  .quiz-container {
+    padding: 3rem 2.5rem;
   }
 
   .quiz-title {
