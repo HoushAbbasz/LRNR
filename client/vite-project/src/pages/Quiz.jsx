@@ -8,16 +8,21 @@ const questionCounts = ['5', '10', '15']
 const styles = ['normal', 'master oogway', "1940's gangster", "like I'm an 8 year old", 'jedi', 'captain jack sparrow', 'matthew mcconaughey']
 
 // Quiz page - contains the form for generating a personalized quiz
-function Quiz() {
+function Quiz({ onStart }) {
 
-  // useState tracks what the user selects in each dropdown
-  // quizConfig holds all 4 selections, setQuizConfig updates them
+  // quizConfig holds all 4 dropdown selections
   const [quizConfig, setQuizConfig] = useState({
     topic: '',
     expertise: '',
     numQuestions: '5',
     style: 'normal'
   })
+
+  // loading tracks whether the API call is in progress
+  const [loading, setLoading] = useState(false)
+
+  // error tracks any error messages to show the user
+  const [error, setError] = useState(null)
 
   // handleChange updates quizConfig when the user changes a dropdown
   // e.target.name is which dropdown changed, e.target.value is what they picked
@@ -26,60 +31,106 @@ function Quiz() {
     setQuizConfig({ ...quizConfig, [e.target.name]: e.target.value })
   }
 
-  // handleSubmit runs when the user clicks Submit
-  // e.preventDefault stops the page from refreshing
-  // console.log shows the current selections in the browser console for testing
-  // Will eventually send quizConfig to the backend to generate the quiz
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
+    setError(null)
     console.log('Quiz config submitted:', quizConfig)
+
+    try {
+      // Sends a POST request to the backend with the quiz config as the body
+      const response = await fetch("http://localhost:3000/api/generateQuiz", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        // Converts the quizConfig object to a JSON string for the request body
+        body: JSON.stringify(quizConfig),
+      })
+
+      // Parses the JSON response from the backend into a JavaScript object
+      const data = await response.json()
+      console.log("Questions:", data.questions)
+
+      // Passes the config and generated questions to QuizFlow to trigger navigation
+      onStart(quizConfig, data.questions)
+
+    } catch (err) {
+      console.error('Error generating quiz:', err)
+      setError('Something went wrong generating your quiz. Please try again!')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
-    <div>
-      <h1>Quiz Generation Options</h1>
-      <p>Please choose your preferences below to generate your personalized quiz</p>
+    <div className="quiz-page">
 
-      <form onSubmit={handleSubmit}>
+      <h1 className="quiz-title">Quiz Generator</h1>
+      <p className="quiz-subtitle">Please choose your preferences below to generate your personalized quiz</p>
 
-        {/* Topic dropdown - loops through topics array to build the options */}
-        <select name="topic" value={quizConfig.topic} onChange={handleChange}>
-          <option value="">Topic</option>
-          {topics.map((topic) => (
-            <option key={topic} value={topic}>{topic}</option>
-          ))}
-        </select>
+      <form className="quiz-form" onSubmit={handleSubmit}>
 
-        {/* Expertise dropdown - loops through expertiseLevels array to build the options */}
-        <select name="expertise" value={quizConfig.expertise} onChange={handleChange}>
-          <option value="">Expertise</option>
-          {expertiseLevels.map((level) => (
-            <option key={level} value={level}>{level}</option>
-          ))}
-        </select>
+        {/* Topic dropdown */}
+        <div className="form-group">
+          <label htmlFor="topic">Topic</label>
+          <select id="topic" name="topic" value={quizConfig.topic} onChange={handleChange} required>
+            <option value="">Select a topic</option>
+            {topics.map((topic) => (
+              <option key={topic} value={topic}>{topic}</option>
+            ))}
+          </select>
+        </div>
 
-        {/* Number of questions dropdown - loops through questionCounts array to build the options */}
-        <select name="numQuestions" value={quizConfig.numQuestions} onChange={handleChange}>
-          <option value="">Number of Questions</option>
-          {questionCounts.map((count) => (
-            <option key={count} value={count}>{count}</option>
-          ))}
-        </select>
+        {/* Expertise dropdown */}
+        <div className="form-group">
+          <label htmlFor="expertise">Expertise Level</label>
+          <select id="expertise" name="expertise" value={quizConfig.expertise} onChange={handleChange} required>
+            <option value="">Select your level</option>
+            {expertiseLevels.map((level) => (
+              <option key={level} value={level}>{level}</option>
+            ))}
+          </select>
+        </div>
 
-        {/* Style of questions dropdown - loops through styles array to build the options */}
-        <select name="style" value={quizConfig.style} onChange={handleChange}>
-          <option value="">Style of Questions</option>
-          {styles.map((style) => (
-            <option key={style} value={style}>{style}</option>
-          ))}
-        </select>
+        {/* Number of questions dropdown */}
+        <div className="form-group">
+          <label htmlFor="numQuestions">Number of Questions</label>
+          <select id="numQuestions" name="numQuestions" value={quizConfig.numQuestions} onChange={handleChange}>
+            <option value="">Select amount</option>
+            {questionCounts.map((count) => (
+              <option key={count} value={count}>{count}</option>
+            ))}
+          </select>
+        </div>
 
-        <button type="submit">Submit</button>
+        {/* Style dropdown */}
+        <div className="form-group">
+          <label htmlFor="style">Question Style</label>
+          <select id="style" name="style" value={quizConfig.style} onChange={handleChange}>
+            <option value="">Select a style</option>
+            {styles.map((style) => (
+              <option key={style} value={style}>{style}</option>
+            ))}
+          </select>
+        </div>
+
+        {/* Error message shows if the API call fails */}
+        {error && <p className="error-message">{error}</p>}
+
+        {/* Submit button shows loading spinner while waiting for the API */}
+        <button className="quiz-submit-btn" type="submit" disabled={loading}>
+          {loading ? (
+            <>
+              <span className="spinner"></span>
+              Generating Quiz...
+            </>
+          ) : (
+            'Generate Quiz'
+          )}
+        </button>
 
       </form>
     </div>
   )
 }
 
-// Exporting Quiz so it can be used in App.jsx
 export default Quiz
