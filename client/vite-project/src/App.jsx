@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Account from './pages/Account'
 import QuizFlow from './components/QuizFlow'
 import Login from './pages/Login'
+import './index.css'
 
 // App is the main component that wraps the whole app in a BrowserRouter
 // Route "/" shows the Home page

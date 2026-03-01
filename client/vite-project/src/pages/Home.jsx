@@ -110,7 +110,7 @@ function Home() {
       <div className="carousel-window">
         <div 
           className="carousel-track">
-          {[...topics, ...topics].map((t, i) => (
+          {[...topics, ...topics, ...topics].map((t, i) => (
             <div className="topic-slide" key={i}>
               <img src={t.logo} alt={`${t.name} logo`} />
               <p>{t.name}</p>

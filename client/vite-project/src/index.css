@@ -34,7 +34,7 @@
         transform: translateX(0);
     }
     to {
-        transform: translateX(-50%);
+        transform: translateX(-33.333%);
     }
 }
 @keyframes blink {
@@ -136,7 +136,9 @@ body {
 }
 .carousel-window {
     overflow: hidden;
-    width: 93%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 24px;
     position: relative;
 }
 .carousel-track {
@@ -144,6 +146,7 @@ body {
     gap: 16px;
     width: max-content;
     animation: scrollTopics 28s linear infinite;
+    will-change: transform;
 }
 .topic-slide {
     min-width: 120px;
@@ -250,6 +253,7 @@ body {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+        padding: 5vw;
     }
     #hero-text {
         margin-left: 75px;
@@ -355,9 +359,57 @@ body {
 
 /* =========== HOME LARGE SCREENS =========== */
 @media (min-width: 1025px) {
-    #description-cards {
-    margin-bottom: 30px;
+    .bubble {
+        height: 115px;
+        width: 115px;
     }
+    .bubble.big {
+        width: 210px;
+        height: 210px;
+        top: 80px;
+        right: 50px;
+    }
+    .bubble.big img {
+        height: 95px;
+        width: auto;
+    }
+    .b1 {
+        right: 10px;
+        top: -30px;
+    }
+    .b2 {
+        right: 153px;
+        top: -70px;
+        height: 140px;
+        width: 140px;
+    }
+   .b4 {
+        right: 263px;
+        top: 60px;
+        width: 100px;
+        height: 100px;
+   }
+   .b5 {
+    right: 265px;
+    top: 180px;
+    height: 130px;
+    width: 130px;
+   }
+   .b6 {
+    right: 160px;
+    top: 296px;
+    width: 120px;
+    height: 120px;
+   }
+   .b7 {
+    right: 10px;
+    top: 290px;
+    width: 135px;
+    height: 135px;
+   }
+   #description-cards {
+    gap: 70px;
+   }
 }
 
 /* ============================================================
