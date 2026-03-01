@@ -60,6 +60,7 @@ function Home() {
   <div id="Home-page">
     <section id="hero">
       <div id="hero-text">
+        <p id="hero-top">Become a...</p>
         <h2>LRNR</h2>
         <p>Improve your knowledge in</p>
         <p className="typed-line"><span className="typed">{typedText}</span>
@@ -68,15 +69,48 @@ function Home() {
       </div>
 
       <div id="topic-bubbles">
-        <h2>TOPIC BUBBLES</h2>
+        <div className="bubble b1">
+          <img src="/images/golang.png" alt="Golang Logo"></img>
+          <p>Golang</p>
+        </div>
+
+        <div className="bubble b2">
+          <img src="/images/aws.png" alt="AWS Logo"></img>
+          <p>AWS</p>
+        </div>
+
+        <div className="bubble b3 big">
+          <img src="/images/js.png" alt="Javascript Logo"></img>
+          <p>Javascript</p>
+        </div>
+
+        <div className="bubble b4">
+          <img src="/images/cd.png" alt="CI/CD Logo"></img>
+          <p>CI/CD</p>
+        </div>
+
+        <div className="bubble b5">
+          <img src="/images/homegarden.png" alt="Home Garden Logo"></img>
+          <p>Home Garden</p>
+        </div>
+
+        <div className="bubble b6">
+          <img src="/images/coffee.png"></img>
+          <p>Coffee</p>
+        </div>
+
+        <div className="bubble b7">
+          <img src="/images/fingerfood.png" alt="Finger Food Logo"></img>
+          <p>Finger Food</p>
+        </div>
+        
       </div>
     </section>
-    {/* MOBILE USE */}
     <section id="topic-carousel">
       <div className="carousel-window">
         <div 
           className="carousel-track">
-          {[...topics, ...topics].map((t, i) => (
+          {[...topics, ...topics, ...topics].map((t, i) => (
             <div className="topic-slide" key={i}>
               <img src={t.logo} alt={`${t.name} logo`} />
               <p>{t.name}</p>
@@ -93,20 +127,20 @@ function Home() {
     <div id="description-cards">
       <div className="cards">
         <h3><span className="card-accent">Personalized</span> <br></br>Quizzes</h3>
-        <p>Choose your topic, difficulty level, and question style to build a learning experience that matches exactly what you want to master. Whether you're sharpening technical skills ot exploring a new interest, your quiz adapts to you.</p>
-        <p><span className="cards-logo">LRNR</span></p>
+        <p>Choose your topic, difficulty level, and question style to build a learning experience that matches exactly what you want to master. Customize each quiz to match your goals, whether you're sharpening your technical skills or exploring a new interest, your quiz adapts to your pace and prefences. With personalized content, every session is designed to keep you engaged, focused, and steadily progressing toward the knowledge and confidence you want to achieve.</p>
+        <div className="cards-logo">LRNR</div>
       </div>
 
       <div className="cards">
         <h3><span className="card-accent">Rewarding</span> <br></br>Progress</h3>
-        <p>Earn points to track your progress, celebrate milestones as you complete quizzes and master new topics. Every session moves you closer to your learning goals.</p>
-        <p><span className="cards-logo">LRNR</span></p>
+        <p>Earn points to track your progress and celebrate milestones as you complete quizzes and master new topics.s Watch your knowldge grow with every session as you build consistent learning habits and strengthen your skills over time. Each quiz brings you one step closer to achieving your goals, turning small wins into meaningful progress you can see and feel.</p>
+        <div className="cards-logo">LRNR</div>
       </div>
 
       <div className="cards">
         <h3><span className="card-accent">Personal</span> <br></br>SME</h3>
         <p>Experience quizzes designed with depth and purpose. Each question is crafter to reflect real-world knowledge and practical understanding, helping you think critically and apply what you learn. With expert-inspired content guiding your progress, you're not just memorizing answers, you're building true subject mastery.</p>
-        <p><span className="cards-logo">LRNR</span></p>
+        <div className="cards-logo">LRNR</div>
       </div>
     </div>
   </div>

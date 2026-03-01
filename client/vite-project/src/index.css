@@ -34,7 +34,7 @@
         transform: translateX(0);
     }
     to {
-        transform: translateX(-50%);
+        transform: translateX(-33.333%);
     }
 }
 @keyframes blink {
@@ -64,6 +64,14 @@
   to { transform: rotate(360deg); }
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html, body {
+  overflow-x: hidden;
+}
 
 body {
   margin: 0;
@@ -92,6 +100,10 @@ body {
 #hero-text h2 {
     font-family: "akira";
     font-size: 70px;
+    margin-top: 0;
+}
+#hero-top {
+    margin-bottom: 0;
 }
 #hero-text p {
     font-size: 20px;
@@ -124,7 +136,9 @@ body {
 }
 .carousel-window {
     overflow: hidden;
-    width: 93vw;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 24px;
     position: relative;
 }
 .carousel-track {
@@ -132,6 +146,7 @@ body {
     gap: 16px;
     width: max-content;
     animation: scrollTopics 28s linear infinite;
+    will-change: transform;
 }
 .topic-slide {
     min-width: 120px;
@@ -145,7 +160,7 @@ body {
     filter: invert(100%) sepia(91%) saturate(36%) hue-rotate(207deg) brightness(110%) contrast(110%);
 }
 #begin-banner {
-    height: 300px;
+    height: 400px;
     background-color: var(--background-color);
     color: var(--white);
     display: flex;
@@ -155,6 +170,7 @@ body {
     font-family: "akira";
     border-radius: 0 0 40px 40px;
     margin-top: -30px;
+    margin-bottom: -30px;
     text-align: center;
 }
 #begin-banner button {
@@ -166,7 +182,7 @@ body {
     flex-direction: row;
     gap: 20px;
     background-color: var(--vibrant-orange);
-    color: var(--white)    
+    color: var(--white);  
 }
 #begin-banner p {
     margin-left: 9px;
@@ -180,24 +196,26 @@ body {
 }
 #description-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, 290px);
     gap: 18px;
-
     padding: 28px 18px;
     background-color: var(--background-color);
-
-    margin: -30px 0;
-    justify-content: space-between;
+    justify-content: center;
+    
 }
+
+
 .cards {
     background-color: var(--light-grey);
     border-radius: 18px;
     padding: 22px 18px;
     min-height: 210px;
-    max-width: 300px;
+    width: 290px;
+
+    display: flex;
+    flex-direction: column;
 } 
 .cards h3 {
-    margin: 0 0 14px 0;
     line-height: 1.1;
     text-align: center;
     max-width: 100%;
@@ -215,10 +233,183 @@ body {
     font-family: "zt" !important;
     text-align: center;
 }
-.cards p .cards-logo {
+.cards-logo {
     font-family: "akira";
     color: var(--logo);
-    margin-bottom: 30px;
+    margin-top: auto;
+    text-align: center;
+}
+
+/* ======= HOME TABLET/SMALL SCREENS =========== */
+@media (min-width: 481px) {
+    
+}
+/* ======== HOME LAPTOP AND DESKTOP======== */
+@media (min-width: 769px) {
+
+    /* ==== HOME HERO ==== */
+    #hero {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5vw;
+    }
+    #hero-text {
+        margin-left: 75px;
+    }
+    #topic-bubbles {
+        display: flex;
+        position: relative;
+        width: 420px;
+        height: 320px;
+        margin: 40px 10px;
+    }
+    .bubble {
+        background: var(--white);
+        border-radius: 999px;
+        -webkit-box-shadow: 0px 0px 32px 2px rgba(75,22,28,0.67); 
+        box-shadow: 0px 0px 32px 2px rgba(75,22,28,0.67);
+        position: absolute;
+        width: 95px;
+        height: 95px;
+        border-radius: 50%;
+        align-self: start;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .bubble img {
+        width: 40px;
+        height: auto;
+        filter: invert(47%) sepia(73%) saturate(3929%) hue-rotate(0deg) brightness(101%) contrast(105%);
+        margin-bottom: 0;
+        object-fit: contain;
+    }
+    .bubble p {
+        color: var(--vibrant-orange);
+        font-family: "zt";
+        margin-top: 0;
+    }
+    .bubble.big {
+        width: 190px;
+        height: 190px;
+        top: 80px;
+        right: 34px;
+    }
+    .bubble.big img {
+        height: 75px;
+        width: auto;
+    }
+    .b1 {
+        right: 10px;
+        top: -25px;
+    }
+    .b2 {
+        right: 133px;
+        top: -50px;
+        height: 120px;
+        width: 120px;
+    }
+   .b4 {
+        right: 233px;
+        top: 76px;
+        width: 80px;
+        height: 80px;
+   }
+   .b5 {
+    right: 235px;
+    top: 180px;
+    height: 110px;
+    width: 110px;
+   }
+   .b6 {
+    right: 150px;
+    top: 276px;
+    width: 100px;
+    height: 100px;
+   }
+   .b7 {
+    right: 10px;
+    top: 275px;
+    width: 115px;
+    height: 115px;
+   }
+   
+    #topic-carousel {
+        height: 100px;
+        font-size: 10px;
+    }
+    .topic-slide {
+        margin-top: 20px;
+    }
+    .topic-slide img {
+        height: 40px;
+        width: auto;
+    }
+
+}
+@media (max-width: 941px) {
+  #description-cards .cards:last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+}
+
+/* =========== HOME LARGE SCREENS =========== */
+@media (min-width: 1025px) {
+    .bubble {
+        height: 115px;
+        width: 115px;
+    }
+    .bubble.big {
+        width: 210px;
+        height: 210px;
+        top: 80px;
+        right: 50px;
+    }
+    .bubble.big img {
+        height: 95px;
+        width: auto;
+    }
+    .b1 {
+        right: 10px;
+        top: -30px;
+    }
+    .b2 {
+        right: 153px;
+        top: -70px;
+        height: 140px;
+        width: 140px;
+    }
+   .b4 {
+        right: 263px;
+        top: 60px;
+        width: 100px;
+        height: 100px;
+   }
+   .b5 {
+    right: 265px;
+    top: 180px;
+    height: 130px;
+    width: 130px;
+   }
+   .b6 {
+    right: 160px;
+    top: 296px;
+    width: 120px;
+    height: 120px;
+   }
+   .b7 {
+    right: 10px;
+    top: 290px;
+    width: 135px;
+    height: 135px;
+   }
+   #description-cards {
+    gap: 70px;
+   }
 }
 
 /* ============================================================
