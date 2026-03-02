@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Account from './pages/Account'
 import QuizFlow from './components/QuizFlow'
+import Navbar from './components/Navbar'
 import Login from './pages/Login'
 import './index.css'
 
@@ -16,6 +17,7 @@ import './index.css'
 function App() {
   return (
     <BrowserRouter>
+      <Navbar/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/account" element={<Account />} />

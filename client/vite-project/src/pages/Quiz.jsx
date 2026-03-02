@@ -1,5 +1,7 @@
 // Importing useState to track the user's dropdown selections
 import { useState } from 'react'
+// useAuth gives us access to the login/logout function
+import { useAuth } from '../context/AuthContext'
 
 // Arrays containing the options for each dropdown
 const topics = ['golang', 'aws', 'javascript', 'CI/CD', 'home gardens', 'coffee', 'finger foods']
@@ -9,7 +11,7 @@ const styles = ['normal', 'master oogway', "1940's gangster", "like I'm an 8 yea
 
 // Quiz page - contains the form for generating a personalized quiz
 function Quiz({ onStart }) {
-
+  const { token } = useAuth()
   // quizConfig holds all 4 dropdown selections
   const [quizConfig, setQuizConfig] = useState({
     topic: '',
@@ -41,7 +43,9 @@ function Quiz({ onStart }) {
       // Sends a POST request to the backend with the quiz config as the body
       const response = await fetch("http://localhost:3000/api/generateQuiz", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", 
+                    Authorization: `Bearer ${token}`,
+        },
         // Converts the quizConfig object to a JSON string for the request body
         body: JSON.stringify(quizConfig),
       })
