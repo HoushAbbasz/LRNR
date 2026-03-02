@@ -7,6 +7,7 @@ import Account from './pages/Account'
 import QuizFlow from './components/QuizFlow'
 import Login from './pages/Login'
 import Footer from './components/Footer'
+import Navbar from './components/Navbar'
 
 import './index.css'
 

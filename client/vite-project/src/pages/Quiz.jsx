@@ -66,7 +66,7 @@ function Quiz({ onStart }) {
   }
 
   return (
-    <div className="quiz-page">
+    <main className="quiz-page">
       <div className="quiz-container">
 
         <h1 className="quiz-title">Quiz Generator</h1>
@@ -135,7 +135,7 @@ function Quiz({ onStart }) {
 
         </form>
       </div>
-    </div>
+    </main>
   )
 }
 
