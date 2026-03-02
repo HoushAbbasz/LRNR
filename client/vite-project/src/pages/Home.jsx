@@ -6,7 +6,7 @@ const topicsType = ['Golang', 'AWS', 'JavaScript', 'CI/CD', 'Home Gardens', 'Cof
 const topics = [
   { name: "Golang", logo: "/images/golang.png" },
   { name: "AWS", logo: "/images/aws.png" },
-  { name: "Javascript", logo: "/images/js.png" },
+  { name: "Javascript", logo: "/images/javascript.png" },
   { name: "CI/CD", logo: "/images/cd.png" },
   { name: "Home Gardens", logo: "/images/homegarden.png" },
   { name: "Coffee", logo: "/images/coffee.png" },
@@ -59,52 +59,58 @@ function Home() {
   return (
   <div id="Home-page">
     <section id="hero">
-      <div id="hero-text">
-        <p id="hero-top">Become a...</p>
-        <h2>LRNR</h2>
-        <p>Improve your knowledge in</p>
-        <p className="typed-line"><span className="typed">{typedText}</span>
-        <span className="cursor">|</span></p>
+        <div className="bg-bubbles" aria-hidden="true">
+          <span className="bg-bubble bg1" />
+          <span className="bg-bubble bg2" />
+          <span className="bg-bubble bg3" />
+          <span className="bg-bubble bg4" />
+        </div>
+        <div id="hero-text">
+          <p id="hero-top">Become a...</p>
+          <h2>LRNR</h2>
+          <p>Improve your knowledge in</p>
+          <p className="typed-line"><span className="typed">{typedText}</span>
+          <span className="cursor">|</span></p>
 
-      </div>
-
-      <div id="topic-bubbles">
-        <div className="bubble b1">
-          <img src="/images/golang.png" alt="Golang Logo"></img>
-          <p>Golang</p>
         </div>
 
-        <div className="bubble b2">
-          <img src="/images/aws.png" alt="AWS Logo"></img>
-          <p>AWS</p>
-        </div>
+        <div id="topic-bubbles">
+          <div className="bubble b1">
+            <img src="/images/golang.png" alt="Golang Logo"></img>
+            <p>Golang</p>
+          </div>
 
-        <div className="bubble b3 big">
-          <img src="/images/js.png" alt="Javascript Logo"></img>
-          <p>Javascript</p>
-        </div>
+          <div className="bubble b2">
+            <img src="/images/aws.png" alt="AWS Logo"></img>
+            <p>AWS</p>
+          </div>
 
-        <div className="bubble b4">
-          <img src="/images/cd.png" alt="CI/CD Logo"></img>
-          <p>CI/CD</p>
-        </div>
+          <div className="bubble b3 big">
+            <img src="/images/javascript.png" alt="Javascript Logo"></img>
+            <p>Javascript</p>
+          </div>
 
-        <div className="bubble b5">
-          <img src="/images/homegarden.png" alt="Home Garden Logo"></img>
-          <p>Home Garden</p>
-        </div>
+          <div className="bubble b4">
+            <img src="/images/cd.png" alt="CI/CD Logo"></img>
+            <p>CI/CD</p>
+          </div>
 
-        <div className="bubble b6">
-          <img src="/images/coffee.png"></img>
-          <p>Coffee</p>
-        </div>
+          <div className="bubble b5">
+            <img src="/images/homegarden.png" alt="Home Garden Logo"></img>
+            <p>Home<br></br> Garden</p>
+          </div>
 
-        <div className="bubble b7">
-          <img src="/images/fingerfood.png" alt="Finger Food Logo"></img>
-          <p>Finger Food</p>
+          <div className="bubble b6">
+            <img src="/images/coffee.png"></img>
+            <p>Coffee</p>
+          </div>
+
+          <div className="bubble b7">
+            <img src="/images/fingerfood.png" alt="Finger Food Logo"></img>
+            <p>Finger <br></br>Food</p>
+          </div>
+          
         </div>
-        
-      </div>
     </section>
     <section id="topic-carousel">
       <div className="carousel-window">
@@ -122,7 +128,7 @@ function Home() {
 
     <section id="begin-banner">
       <h2>LOGIN TO<br></br>TAKE A QUIZ!</h2>
-      <button><p>GET STARTED</p><img src="/images/right-arrow.png" alt="arrow image"></img></button>
+      <button to="/register"><p>GET STARTED</p><img src="/images/right-arrow.png" alt="arrow image"></img></button>
     </section>
     <div id="description-cards">
       <div className="cards">

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
 /* ====== VARIABLES ====== */
 :root {
   --background-color: #0d0d0d;
@@ -10,6 +11,7 @@
   --logo: hsl(0, 0%, 38%);
   --footer-header: hsl(0, 1%, 61%);
   --footer: #242323;
+  --font-ui: "Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
 /* ====== FONTS ====== */
@@ -28,6 +30,10 @@
 @font-face {
     font-family: "zt";
     src: url('/fonts/zt_otez/ZTOtez-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: "drag";
+  src: url('/fonts/62dragz/62DRAGZ.otf') format('opentype');
 }
 /* ====== KEY FRAMES ======= */
 
@@ -54,7 +60,16 @@
     transform: translateY(0);
   }
 }
-
+@keyframes floaty {
+  0%   { transform: translateY(0) translateX(0); }
+  50%  { transform: translateY(-18px) translateX(10px); }
+  100% { transform: translateY(0) translateX(0); }
+}
+@keyframes floatBubble {
+  0%   { transform: translateY(0) translateX(0); }
+  50%  { transform: translateY(-10px) translateX(15px); }
+  100% { transform: translateY(0) translateX(0); }
+}
 @keyframes glowPulse {
   0% { box-shadow: 0 0 5px var(--vibrant-orange); }
   50% { box-shadow: 0 0 20px var(--vibrant-orange), 0 0 40px var(--orange); }
@@ -99,17 +114,20 @@ body {
   margin-bottom: 0;
   border-radius: 0 0 40px 40px;
 }
+#hero-text {
+  z-index: 999;
+}
 #hero-text h2 {
-    font-family: "akira";
+    font-family: "drag";
     font-size: 70px;
-    margin-top: 0;
+    margin-top: 10px;
 }
 #hero-top {
     margin-bottom: 0;
 }
 #hero-text p {
     font-size: 20px;
-    font-family: "zt";
+    font-family: var(--font-ui);
 }
 .typed-line .typed {
     min-height: 32px;
@@ -132,9 +150,10 @@ body {
     justify-content: center;
     font-family: "akira";
     border-radius: 0 0 40px 40px;
-    position: relative;
-    z-index: 999;
+    z-index: 2;
     background-color: var(--light-background);
+    overflow: hidden;
+    position: relative;
 }
 .carousel-window {
     overflow: hidden;
@@ -223,7 +242,7 @@ body {
     max-width: 100%;
     overflow-wrap: break-word;
     word-break: break-word;
-    font-family: "zt";
+    font-family: var(--font-ui);
 }
 .card-accent {
     font-family: "akira";
@@ -232,7 +251,7 @@ body {
 .cards p {
     margin-top: 20px;
     line-height: 1.4;
-    font-family: "zt";
+    font-family: var(--font-ui);
     text-align: center;
 }
 .cards-logo {
@@ -258,7 +277,49 @@ body {
         padding: 5vw;
     }
     #hero-text {
-        margin-left: 75px;
+        margin-left: 20px;
+    }
+    .bg-bubbles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .bg-bubble {
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.10); /* ghost */
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      backdrop-filter: blur(6px);
+      animation: floaty 7s ease-in-out infinite;
+    }
+    .bg1 { 
+      width: 140px; 
+      height: 140px; 
+      left: 6%;  
+      top: 18%; 
+      animation-duration: 8s; 
+    }
+    .bg2 { 
+      width: 90px;  
+      height: 90px;  
+      left: 18%; 
+      top: 55%; 
+      animation-duration: 7s; 
+    }
+    .bg3 { 
+      width: 110px; 
+      height: 110px; 
+      left: 32%; 
+      top: 30%; 
+      animation-duration: 9s; 
+    }
+    .bg4 { 
+      width: 70px;  
+      height: 70px;  
+      left: 40%; 
+      top: 65%; 
+      animation-duration: 6.5s; 
     }
     #topic-bubbles {
         display: flex;
@@ -281,6 +342,7 @@ body {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        gap: 8px;
     }
     .bubble img {
         width: 40px;
@@ -291,14 +353,18 @@ body {
     }
     .bubble p {
         color: var(--vibrant-orange);
-        font-family: "zt";
+        font-family: "akira";
         margin-top: 0;
+        font-size: 12px;
     }
     .bubble.big {
         width: 190px;
         height: 190px;
         top: 80px;
         right: 34px;
+    }
+    .b3 p {
+      font-size: 17px;
     }
     .bubble.big img {
         height: 75px;
@@ -308,17 +374,33 @@ body {
         right: 10px;
         top: -25px;
     }
+    .b1 p {
+      font-size: 10px;
+    }
     .b2 {
         right: 133px;
         top: -50px;
         height: 120px;
         width: 120px;
+        gap: 12px;
+    }
+    .b2 p {
+      font-size: 17px;
+    }
+    .b2 img {
+      margin-top: 20px;
     }
    .b4 {
         right: 233px;
         top: 76px;
         width: 80px;
         height: 80px;
+   }
+   .b4 img {
+    margin-top: 10px;
+   }
+   .b4 p {
+    font-size: 10px;
    }
    .b5 {
     right: 235px;
@@ -338,15 +420,27 @@ body {
     width: 115px;
     height: 115px;
    }
+
+   .b7 p{
+    font-size: 14px;
+   }
+   .bubble:hover {
+    transform: scale(1.09);
+   box-shadow: 0 0 10px var(--dark-red),
+              0 0 20px var(--orange),
+              0 0 40px var(--vibrant-orange);
+}
    
     #topic-carousel {
         height: 100px;
         font-size: 10px;
+        z-index: 3;
     }
     .topic-slide {
-        margin-top: 20px;
+        margin-top: -10px;
     }
     .topic-slide img {
+        margin-top: 20px;
         height: 40px;
         width: auto;
     }
@@ -362,6 +456,14 @@ body {
 
 /* =========== HOME LARGE SCREENS =========== */
 @media (min-width: 1025px) {
+
+    #hero-text {
+      margin-left: 6vw;
+      scale: 1.3;
+    }
+    #topic-bubbles {
+      margin-right: 6vw;
+    }
     .bubble {
         height: 115px;
         width: 115px;
@@ -590,7 +692,7 @@ body {
 #logo-quote {
     text-align: center;
     max-width: 400px;
-    color: var(--logo);
+    color: var(--footer-header);
 }
 #logo-quote #logo {
     font-family: "akira";
@@ -610,7 +712,7 @@ body {
     font-family: "arcade";
 }
 #terms-bottom {
-    color: var(--logo);
+    color: var(--footer-header);
     text-align: center;
 }
 /* ======= FOOTER TABLET/SMALL SCREENS =========== */
