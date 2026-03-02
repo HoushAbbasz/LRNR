@@ -6,6 +6,9 @@ import Home from './pages/Home'
 import Account from './pages/Account'
 import QuizFlow from './components/QuizFlow'
 import Login from './pages/Login'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+
 import './index.css'
 
 // App is the main component that wraps the whole app in a BrowserRouter
@@ -16,12 +19,14 @@ import './index.css'
 function App() {
   return (
     <BrowserRouter>
+    <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/account" element={<Account />} />
         <Route path="/quiz" element={<QuizFlow />} />
         <Route path="/login" element={<Login />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }
