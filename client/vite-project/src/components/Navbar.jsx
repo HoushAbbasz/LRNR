@@ -20,7 +20,7 @@ function Navbar() {
   <nav style={{ zIndex: 1000 }}>
     <ul>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/quiz'>Quiz</Link></li>
+        {isLoggedIn && <li><Link to='/quiz'>Quiz</Link></li>}
         {isLoggedIn && <li><Link to='/account'>Account</Link></li>}
         {/* Shows Logout button if logged in, Login link if not */}
         {isLoggedIn ? (
