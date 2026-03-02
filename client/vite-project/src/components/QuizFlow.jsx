@@ -1,6 +1,7 @@
 // Handles the full quiz flow from config form to questions to results
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+// useAuth gives us access to the login/logout function
 import { useAuth } from '../context/AuthContext'
 import Quiz from '../pages/Quiz'
 import QuizQuestions from '../pages/QuizQuestions'
@@ -47,7 +48,7 @@ function QuizFlow() {
     // Calculate total points earned across all questions
     const totalEarned = quizResults.reduce((sum, result) => sum + result.pointsEarned, 0)
 
-    // Save the score to the database — also updates XP and level on the backend
+    // Saves the score to the database, also updates XP and level
     try {
       const response = await fetch('http://localhost:3000/api/score', {
         method: 'POST',
