@@ -92,52 +92,67 @@ function QuizQuestions({ quizConfig, questions, onFinish }) {
   }
 
   return (
-    <div>
-      <p>Question {currentIndex + 1} of {questions.length}</p>
-      <p>Topic: {quizConfig.topic} | Expertise: {quizConfig.expertise} | Points per question: {pointsPerQuestion}</p>
-      <h2>{currentQuestion}</h2>
+    <div className="questions-page">
+      <div className="questions-container">
 
-      {/* Shows the answer form only before feedback has been received */}
-      {!feedback && (
-        <form onSubmit={handleSubmitAnswer}>
-          <textarea
-            placeholder="Type your answer here..."
-            value={userAnswer}
-            onChange={(e) => setUserAnswer(e.target.value)}
-            rows={4}
-            cols={60}
-            disabled={isSubmitting}
-          />
-          <br />
-          <button type="submit" disabled={!userAnswer.trim() || isSubmitting}>
-            {isSubmitting ? 'Checking...' : 'Submit Answer'}
-          </button>
-        </form>
-      )}
+        {/* Progress tracker */}
+        <p className="questions-progress">Question {currentIndex + 1} of {questions.length}</p>
 
-      {/* Shows the feedback section only after the API has responded */}
-      {feedback && (
-        <div>
-          <p><strong>Your answer:</strong> {userAnswer}</p>
-          {feedback.correct ? (
-            <p>Correct! +{pointsPerQuestion} point{pointsPerQuestion > 1 ? 's' : ''}</p>
-          ) : (
-            <div>
-              <p>Incorrect. +0 points</p>
-              {feedback.correctAnswer && (
-                <p><strong>Correct answer:</strong> {feedback.correctAnswer}</p>
+        {/* Quiz meta info */}
+        <p className="questions-meta">Topic: {quizConfig.topic} | Expertise: {quizConfig.expertise} | Points per question: {pointsPerQuestion}</p>
+
+        {/* Question text */}
+        <h2 className="questions-text">{currentQuestion}</h2>
+
+        {/* Shows the answer form only before feedback has been received */}
+        {!feedback && (
+          <form className="questions-form" onSubmit={handleSubmitAnswer}>
+            <textarea
+              className="questions-textarea"
+              placeholder="Type your answer here..."
+              value={userAnswer}
+              onChange={(e) => setUserAnswer(e.target.value)}
+              rows={4}
+              disabled={isSubmitting}
+            />
+            <button className="questions-submit-btn" type="submit" disabled={!userAnswer.trim() || isSubmitting}>
+              {isSubmitting ? (
+                <>
+                  <span className="spinner"></span>
+                  Checking...
+                </>
+              ) : (
+                'Submit Answer'
               )}
-            </div>
-          )}
-          {feedback.explanation && (
-            <p><strong>Explanation:</strong> {feedback.explanation}</p>
-          )}
-          {/* Advances to the next question or triggers the results page on the last question */}
-          <button onClick={handleNext}>
-            {isLastQuestion ? 'See Results' : 'Next Question'}
-          </button>
-        </div>
-      )}
+            </button>
+          </form>
+        )}
+
+        {/* Shows the feedback section only after the API has responded */}
+        {feedback && (
+          <div className="questions-feedback">
+            <p className="questions-your-answer"><strong>Your answer:</strong> {userAnswer}</p>
+            {feedback.correct ? (
+              <p className="questions-correct">✓ Correct! +{pointsPerQuestion} point{pointsPerQuestion > 1 ? 's' : ''}</p>
+            ) : (
+              <div>
+                <p className="questions-incorrect">✗ Incorrect. +0 points</p>
+                {feedback.correctAnswer && (
+                  <p className="questions-correct-answer"><strong>Correct answer:</strong> {feedback.correctAnswer}</p>
+                )}
+              </div>
+            )}
+            {feedback.explanation && (
+              <p className="questions-explanation"><strong>Explanation:</strong> {feedback.explanation}</p>
+            )}
+            {/* Advances to the next question or triggers the results page on the last question */}
+            <button className="questions-next-btn" onClick={handleNext}>
+              {isLastQuestion ? 'See Results' : 'Next Question'}
+            </button>
+          </div>
+        )}
+
+      </div>
     </div>
   )
 }
