@@ -184,7 +184,7 @@ app.post("/api/score", authenticateToken, async (req, res) => {
 
 // Initialize Gemini and model version
 const ai = new GoogleGenAI({apiKey: process.env.GEMINI_API_KEY});
-const modelVersion = "gemini-3-flash-preview";
+const modelVersion = "gemini-2.5-flash";
 
 // POST /api/generateQuiz
 // Receives quiz config from the frontend and asks Gemini to generate questions
