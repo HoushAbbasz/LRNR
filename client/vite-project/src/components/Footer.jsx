@@ -12,8 +12,8 @@ function Footer() {
         </div>
       </section>
       <section id="links">
-        <a to="/">Home</a>
-        <a to="/login">Login</a>
+        <Link to="/">Home</Link>
+        <Link to="/login">Login</Link>
         <a to="/register">Sign Up</a>
       </section>
     </section>
