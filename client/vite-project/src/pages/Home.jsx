@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 
 
 // ========= ARRAYS ===========
@@ -101,7 +102,7 @@ function Home() {
           </div>
 
           <div className="bubble b6">
-            <img src="/images/coffee.png"></img>
+            <img src="/images/coffee.png" alt="cofee"></img>
             <p>Coffee</p>
           </div>
 
@@ -126,27 +127,39 @@ function Home() {
       </div>
     </section>
 
+
     <section id="begin-banner">
       <h2>LOGIN TO<br></br>TAKE A QUIZ!</h2>
-      <button to="/register"><p>GET STARTED</p><img src="/images/right-arrow.png" alt="arrow image"></img></button>
+<Link to='/login'>
+      <button className="begin-btn"><p>GET STARTED</p><img src="/images/right-arrow.png" alt="arrow image"></img></button>
+      </Link>
     </section>
+
+
     <div id="description-cards">
       <div className="cards">
         <h3><span className="card-accent">Personalized</span> <br></br>Quizzes</h3>
         <p>Choose your topic, difficulty level, and question style to build a learning experience that matches exactly what you want to master. Customize each quiz to match your goals, whether you're sharpening your technical skills or exploring a new interest, your quiz adapts to your pace and prefences. With personalized content, every session is designed to keep you engaged, focused, and steadily progressing toward the knowledge and confidence you want to achieve.</p>
-        <div className="cards-logo">LRNR</div>
+        <div className="cards-logo">
+          <img src="/images/result.png"></img>
+          LRNR
+          </div>
       </div>
 
       <div className="cards">
         <h3><span className="card-accent">Rewarding</span> <br></br>Progress</h3>
         <p>Earn points to track your progress and celebrate milestones as you complete quizzes and master new topics.s Watch your knowldge grow with every session as you build consistent learning habits and strengthen your skills over time. Each quiz brings you one step closer to achieving your goals, turning small wins into meaningful progress you can see and feel.</p>
-        <div className="cards-logo">LRNR</div>
+        <div className="cards-logo">
+          <img src="/images/result.png"></img>
+          LRNR</div>
       </div>
 
       <div className="cards">
         <h3><span className="card-accent">Personal</span> <br></br>SME</h3>
         <p>Experience quizzes designed with depth and purpose. Each question is crafter to reflect real-world knowledge and practical understanding, helping you think critically and apply what you learn. With expert-inspired content guiding your progress, you're not just memorizing answers, you're building true subject mastery.</p>
-        <div className="cards-logo">LRNR</div>
+        <div className="cards-logo">
+          <img src="/images/result.png"></img>
+          LRNR</div>
       </div>
     </div>
   </div>
