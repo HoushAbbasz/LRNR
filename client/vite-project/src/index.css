@@ -81,6 +81,38 @@
   to { transform: rotate(360deg); }
 }
 
+@keyframes turtleFly {
+  0% {
+    transform: translateX(0) rotate(-5deg);
+  }
+  50% {
+    transform: translateX(50vw) rotate(5deg);
+  }
+  100% {
+    transform: translateX(120vw) rotate(-5deg);
+  }
+}
+
+@keyframes flyDiagRight {
+  from {
+    left: -150px;
+    top: var(--start-top);
+  }
+  to {
+    left: 110vw;
+    top: var(--end-top);
+  }
+}
+@keyframes flyDiagLeft {
+  from {
+    right: -150px;
+    top: var(--start-top);
+  }
+  to {
+    right: 110vw;
+    top: var(--end-top);
+  }
+}
 *,
 *::before,
 *::after {
@@ -94,6 +126,25 @@ body {
   margin: 0;
   padding: 0;
 }
+/* ====== FLYING LEROY - TURTLE ====== */
+  .flying-leroy {
+    position: fixed;
+    width: 120px;
+    z-index: 9999;
+    pointer-events: none;
+    top: var(--start-top);
+  }
+
+  .flying-leroy.right {
+    left: -150px;
+    animation: flyDiagRight 4.5s linear forwards;
+  }
+
+  .flying-leroy.left {
+    right: -150px;
+    transform: scaleX(-1);
+    animation: flyDiagLeft 4.5s linear forwards;
+  }
 /* ====== NAV BAR ====== */
 .nav {
   position: fixed;
@@ -733,7 +784,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem 1.25rem;
+  padding: 8rem 1.25rem;
 }
 
 /* ====== Quiz Container ====== */
@@ -1147,4 +1198,39 @@ body {
     align-self: center;
     padding: 1rem 3rem;
   }
+}
+/* ====== ACCOUNT PAGE ====== */
+#account-page {
+  background: linear-gradient(107deg, rgba(243, 54, 38, 1) 1%, rgba(243, 115, 47, 1) 11%, rgba(243, 118, 48, 1) 60%, rgba(201, 45, 38, 1) 79%, rgba(75, 22, 28, 1) 100%);
+  padding: 120px 0 140px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#bento-box {
+  display: flex;
+  flex-direction: column;
+}
+#box-left {
+  background-color: pink;
+  padding: 20px 30px;
+}
+
+
+
+
+
+/* ====== ACCOUNT TABLET ====== */
+@media (min-width: 769px) {
+}
+
+
+/* ====== ACCOUNT DESKTOP LARGE SCREENS====== */
+@media (min-width: 1025px) {
+  
+}
+
+/* ======= ACCOUNT EXTRA LARGE SCREENS ====== */
+@media (min-width: 1300px) {
+
 }
