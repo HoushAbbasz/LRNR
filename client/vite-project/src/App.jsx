@@ -8,6 +8,7 @@ import QuizFlow from './components/QuizFlow'
 import Login from './pages/Login'
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
+import FlyingLeroy from './components/FlyingLeroy'
 import './index.css'
 
 // App is the main component that wraps the whole app in a BrowserRouter
@@ -18,6 +19,7 @@ import './index.css'
 function App() {
   return (
     <BrowserRouter>
+    <FlyingLeroy />
       <Navbar/>
       <Routes>
         <Route path="/" element={<Home />} />

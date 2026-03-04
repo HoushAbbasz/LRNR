@@ -42,25 +42,32 @@ function Account() {
   if (!account) return <p>Loading...</p>
 
   return (
-    <div>
-      <h1>Account</h1>
-      {/* Display the user's account info*/}
-      <p>Username: {account.username}</p>
-      <p>Streak: {account.streak} days</p>
-      <p>Level: {account.level}</p>
-      <p>XP: {account.xp}</p>
-
-      <h2>Best Scores</h2>
-      {scores.length === 0 ? (
-        <p>No quizzes completed yet.</p>
-      ) : (
-        // Loop through each score and display the topic, expertise, question count, and best score
-        scores.map((s) => (
-          <p key={`${s.topic}-${s.expertise}-${s.num_of_questions}`}>
-            {s.topic} · {s.expertise} · {s.num_of_questions} questions — {s.best_score} / {s.num_of_questions}
-          </p>
-        ))
-      )}
+    <div id="account-page">
+      <div id="bento-box">
+        <section id="box-left">
+          <div id="account">
+            <h1>Welcome, {account.username}</h1>
+          </div>
+        </section>
+        <div id="box-right_top">
+            <h2>Best Scores</h2>
+        {scores.length === 0 ? (
+          <p>No quizzes completed yet.</p>
+        ) : (
+          // Loop through each score and display the topic, expertise, question count, and best score
+          scores.map((s) => (
+            <p key={`${s.topic}-${s.expertise}-${s.num_of_questions}`}>
+              {s.topic} · {s.expertise} · {s.num_of_questions} questions — {s.best_score} / {s.num_of_questions}
+            </p>
+          ))
+        )}
+          </div>
+          <div id="box-right_bottom">
+            <p>XP: {account.xp}</p>
+            <p>Streak: {account.streak} days</p>
+            <p>Level: {account.level}</p>
+        </div>
+      </div>
     </div>
   )
 }
