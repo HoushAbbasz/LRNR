@@ -133,7 +133,9 @@ body {
     z-index: 9999;
     pointer-events: none;
     top: var(--start-top);
+    filter: invert(26%) sepia(29%) saturate(1168%) hue-rotate(74deg) brightness(98%) contrast(92%);
   }
+  
 
   .flying-leroy.right {
     left: -150px;
