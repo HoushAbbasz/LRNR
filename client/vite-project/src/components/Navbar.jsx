@@ -1,7 +1,8 @@
 // Link provides client-side navigation without full page reloads
 import { useState, useEffect } from "react";
 import { useAuth } from '../context/AuthContext'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { useNavRequest } from '../App'
 
 // Navbar component - appears on every page
 function Navbar() {
@@ -9,6 +10,10 @@ function Navbar() {
   // useAuth gives access to the logged in user's username, login status, and logout function
   const { username, isLoggedIn, logout } = useAuth()
   const navigate = useNavigate()
+
+  const { requestNav } = useNavRequest()
+  const goTo = requestNav ?? navigate
+
   const [open, setOpen] = useState(false); //controlling if mobile menu is open
 
   // Clears the auth state and redirects to the home page
@@ -17,8 +22,13 @@ function Navbar() {
     setOpen(false);
     navigate('/');
   }
-// close menu when route link is clicked
+  // close menu when route link is clicked
   const closeMenu = () => setOpen(false);
+
+  const handleNav = (path) => {
+    closeMenu()
+    goTo(path)
+  }
 
   useEffect(() => { //listening for keyboard presses - pressing escape = closed menu
     const onKeyDown = (e) => { // creatiiing functoin for the press
@@ -37,20 +47,19 @@ function Navbar() {
   return (
   <header className="nav" style={{ zIndex: 1000 }}>
     <div className="nav-inner">
-      <Link to="/" className="nav-logo" onClick={closeMenu}>
-        {/* <img src="/images/result.png"></img> */}
+      <button className="nav-logo" onClick={() => handleNav('/')}>
         LRNR
-      </Link>
+      </button>
       {/* DESKTOP LINKS  */}
       <nav className="nav-links">
-        <Link to="/" onClick={closeMenu}>Home</Link>
-        {isLoggedIn && <Link to='/quiz'>Quiz</Link>}
-        {isLoggedIn && <Link to="/account" onClick={closeMenu}>Account</Link>}
-        {isLoggedIn ? (
-          <button className="nav-btn" onClick={handleLogout}>Logout</button>
-        ) : (
-          <Link to="/login" onClick={closeMenu}>Login</Link>
-        )}
+          <button onClick={() => handleNav('/')}>Home</button>
+          {isLoggedIn && <button onClick={() => handleNav('/quiz')}>Quiz</button>}
+          {isLoggedIn && <button onClick={() => handleNav('/account')}>Account</button>}
+          {isLoggedIn ? (
+            <button className="nav-btn" onClick={handleLogout}>Logout</button>
+          ) : (
+            <button onClick={() => handleNav('/login')}>Login</button>
+          )}
       </nav>
 
       {/* MOBILE BURGER */}
@@ -69,13 +78,13 @@ function Navbar() {
 
        {/* MOBILE MENU */}
        <nav id="mobile-menu" className={`mobile-menu ${open ? "show" : ""}`}>
-        <Link to="/" onClick={closeMenu}>Home</Link>
-        {isLoggedIn && <Link to='/quiz'>Quiz</Link>}
-        {isLoggedIn && <Link to="/account" onClick={closeMenu}>Account</Link> }
+        <button onClick={() => handleNav('/')}>Home</button>
+        {isLoggedIn && <button onClick={() => handleNav('/quiz')}>Quiz</button>}
+        {isLoggedIn && <button onClick={() => handleNav('/account')}>Account</button>}
         {isLoggedIn ? (
           <button className="mobile-btn" onClick={handleLogout}>Logout</button>
         ) : (
-          <Link to="/login" onClick={closeMenu}>Login</Link>
+          <button onClick={() => handleNav('/login')}>Login</button>
         )}
        </nav> 
   </header>
