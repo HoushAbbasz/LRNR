@@ -1,6 +1,14 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useNavRequest } from '../App'
 
 function Footer() {
+
+const navigate = useNavigate()
+// Use useNavRequest context to see if they are trying to navigate from quiz flow
+const { requestNav } = useNavRequest() 
+// If requestNav is null, use navigate
+const goTo = requestNav ?? navigate 
+
   return (
   <div id="footer">
     <section id="footer-sections">
@@ -12,9 +20,9 @@ function Footer() {
         </div>
       </section>
       <section id="links">
-        <Link to="/">Home</Link>
-        <Link to="/login">Login</Link>
-        <a to="/register">Sign Up</a>
+          <button onClick={() => goTo('/')}>Home</button>
+          <button onClick={() => goTo('/login')}>Login</button>
+          <button onClick={() => goTo('/login')}>Sign Up</button>
       </section>
     </section>
     <section id="terms-bottom">

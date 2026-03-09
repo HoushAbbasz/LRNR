@@ -172,6 +172,9 @@ body {
   text-decoration: none;
   letter-spacing: 0.2em;
   color: var(--light-grey);
+  background: none; 
+  border: none;
+  cursor: pointer;
 }
 .nav-logo img {
   height: 35px;
@@ -249,7 +252,7 @@ body {
   pointer-events: auto;
 }
  .mobile-menu a,
-.mobile-btn {
+.mobile-menu button {
   display: block;
   width: 100%;
   text-align: left;
@@ -281,7 +284,7 @@ body {
     gap: 18px;
   }
   .nav-links a,
-  .nav-btn {
+  .nav-links button {
     font-family: var(--font-ui);
     color: rgba(255, 255, 255, 0.92);
     text-decoration: none;
@@ -968,10 +971,15 @@ body {
     padding: 60px;
 }
 
-#links a {
+#links a,
+#links button {
     text-decoration: none;
     color: var(--footer-header);
     font-family: "arcade";
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: inherit;
 }
 #terms-bottom {
     color: var(--footer-header);
