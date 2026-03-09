@@ -1,11 +1,12 @@
 // Handles the full quiz flow from config form to questions to results
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 // useAuth gives us access to the login/logout function
 import { useAuth } from '../context/AuthContext'
 import Quiz from '../pages/Quiz'
 import QuizQuestions from '../pages/QuizQuestions'
 import Results from '../pages/Results'
+import { useNavRequest } from '../App'
 
 function QuizFlow() {
   // Stores the user's quiz settings (topic, expertise, numQuestions, style)
@@ -22,11 +23,59 @@ function QuizFlow() {
   const { token, isLoggedIn } = useAuth()
   // Stores the streak returned from the API after saving the score
   const [streak, setStreak] = useState(null)
+  // Checks whether the abandon-quiz modal is visible
+  const [showModal, setShowModal] = useState(false)
+  // Stores the URL the user was trying to navigate to so we can go there if they confirm
+  const [pendingNav, setPendingNav] = useState(null)
+
+
+  const { setRequestNav } = useNavRequest()
+
+
+  // True only while a quiz is actively in progress
+  const quizInProgress = page === 'questions'
+
+  // Called by Navbar/Footer links instead of navigating directly.
+  // If a quiz is in progress, show the modal; otherwise navigate immediately.
+  const requestNav = (path) => {
+    if (quizInProgress) {
+      setPendingNav(path)
+      setShowModal(true)
+    } else {
+      navigate(path)
+    }
+  }
+
+  useEffect(() => {
+  // Register this component's guarded nav with the context
+  setRequestNav(() => requestNav)
+  // Unregister when QuizFlow unmounts
+  return () => setRequestNav(null)
+  // re-register when guard condition changes
+  }, [quizInProgress]) 
 
   // Redirect to login if not logged in
   if (!isLoggedIn) {
     navigate('/login')
     return null
+  }
+
+  // User confirmed they want to leave, reset state and go to the pending URL
+  const confirmLeave = () => {
+    setShowModal(false)
+    setPage('config')
+    setQuizConfig(null)
+    setQuestions([])
+    setResults([])
+    setStreak(null)
+    navigate(pendingNav)
+    setPendingNav(null)
+  }
+
+  // User does not want to leave, reset modal and pendingNav
+  const cancelLeave = () => {
+    setShowModal(false)
+    setPendingNav(null)
   }
 
   // Called by Quiz when the user submits the config form and questions come back from the API
@@ -87,14 +136,41 @@ function QuizFlow() {
     navigate('/quiz')
   }
 
-  // If/Else logic to handle page navigation
-  if (page === 'questions') {
-    return <QuizQuestions quizConfig={quizConfig} questions={questions} onFinish={handleQuizFinish} />
-  }
-  if (page === 'results') {
-    return <Results quizConfig={quizConfig} results={results} onRetake={handleRetake} />
-  }
-  return <Quiz onStart={handleQuizStart} />
+  return (
+    <>
+      {/* Abandon quiz modal */}
+      {showModal && (
+        <div style={{
+          position: 'fixed', inset: 0,
+          backgroundColor: 'rgba(0,0,0,0.5)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          zIndex: 1000,
+        }}>
+          <div style={{
+            background: 'white', borderRadius: '8px',
+            padding: '2rem', maxWidth: '400px', width: '90%',
+            textAlign: 'center',
+          }}>
+            <h2>Abandon quiz?</h2>
+            <p>Your progress will be lost if you leave now.</p>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '1.5rem' }}>
+              <button onClick={cancelLeave}>Keep playing</button>
+              <button onClick={confirmLeave}>Leave anyway</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* If/else logic for quiz flow */}
+      {page === 'questions' && (
+        <QuizQuestions quizConfig={quizConfig} questions={questions} onFinish={handleQuizFinish} />
+      )}
+      {page === 'results' && (
+        <Results quizConfig={quizConfig} results={results} onRetake={handleRetake} streak={streak} />
+      )}
+      {page === 'config' && <Quiz onStart={handleQuizStart} />}
+    </>
+  )
 }
 
 export default QuizFlow

@@ -8,7 +8,7 @@
   --orange: #f37630;
   --vibrant-orange: #fe6001; /* button */
   --light-grey: #ebebed; /* cards */
-  --logo: hsl(0, 0%, 38%);
+  --logo: #616161;
   --footer-header: hsl(0, 1%, 61%);
   --footer: #242323;
   --font-ui: "Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -81,6 +81,38 @@
   to { transform: rotate(360deg); }
 }
 
+@keyframes turtleFly {
+  0% {
+    transform: translateX(0) rotate(-5deg);
+  }
+  50% {
+    transform: translateX(50vw) rotate(5deg);
+  }
+  100% {
+    transform: translateX(120vw) rotate(-5deg);
+  }
+}
+
+@keyframes flyDiagRight {
+  from {
+    left: -150px;
+    top: var(--start-top);
+  }
+  to {
+    left: 110vw;
+    top: var(--end-top);
+  }
+}
+@keyframes flyDiagLeft {
+  from {
+    right: -150px;
+    top: var(--start-top);
+  }
+  to {
+    right: 110vw;
+    top: var(--end-top);
+  }
+}
 *,
 *::before,
 *::after {
@@ -94,7 +126,181 @@ body {
   margin: 0;
   padding: 0;
 }
+/* ====== FLYING LEROY - TURTLE ====== */
+  .flying-leroy {
+    position: fixed;
+    width: 120px;
+    z-index: 9999;
+    pointer-events: none;
+    top: var(--start-top);
+    filter: invert(26%) sepia(29%) saturate(1168%) hue-rotate(74deg) brightness(98%) contrast(92%);
+  }
+  
 
+  .flying-leroy.right {
+    left: -150px;
+    animation: flyDiagRight 4.5s linear forwards;
+  }
+
+  .flying-leroy.left {
+    right: -150px;
+    transform: scaleX(-1);
+    animation: flyDiagLeft 4.5s linear forwards;
+  }
+/* ====== NAV BAR ====== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-inner {
+  height: 72px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  font-family: "akira";
+  text-decoration: none;
+  letter-spacing: 0.2em;
+  color: var(--light-grey);
+  background: none; 
+  border: none;
+  cursor: pointer;
+}
+.nav-logo img {
+  height: 35px;
+  filter: invert(100%) sepia(100%) saturate(1%) hue-rotate(146deg) brightness(106%) contrast(99%);
+}
+.nav-links {
+  display: none;
+}
+.burger {
+  display: inline-block;
+
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+}
+.burger span {
+  position: absolute;
+  left: 11px;
+  right: 11px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease, top 0.25s ease;
+}
+.burger span:nth-child(1) { top: 15px; }
+.burger span:nth-child(2) { top: 22px; }
+.burger span:nth-child(3) { top: 29px; }
+
+.burger.is-open span:nth-child(1) { top: 22px; transform: rotate(45deg); }
+.burger.is-open span:nth-child(2) { opacity: 0; }
+.burger.is-open span:nth-child(3) { top: 22px; transform: rotate(-45deg) }
+
+.nav-welcome {
+  display: none;
+}
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 2999;
+}
+.menu-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.mobile-menu {
+  position: fixed;
+  top: 80px;
+  right: 14px;
+  width: min(360px, calc(100vw - 28px));
+  padding: 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  background: rgba(0, 0, 0, 0.70);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  transform: translateY(-10px) scale(0.98);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  z-index: 3001;
+}
+.mobile-menu.show {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+ .mobile-menu a,
+.mobile-menu button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 14px 12px;
+  border-radius: 14px;
+
+  font-family: var(--font-ui);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.92);
+
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+@media (min-width: 769px) {
+  .burger {
+    display: none;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .nav-links a,
+  .nav-links button {
+    font-family: var(--font-ui);
+    color: rgba(255, 255, 255, 0.92);
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding: 10px 12px;
+    border-radius: 12px;
+    transition: transform 0.2s ease, background 0.2s ease;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  .nav-welcome {
+    display: none;
+  }
+}
 /* ====== HOME PAGE ====== */
 
 #Home-page {
@@ -113,6 +319,7 @@ body {
   justify-content: center;
   margin-bottom: 0;
   border-radius: 0 0 40px 40px;
+  padding-top: 90px;
 }
 #hero-text {
   z-index: 999;
@@ -208,12 +415,15 @@ body {
 #begin-banner p {
     margin-left: 9px;
     font-family: "akira";
-    color: var(--background-color)
+    color: var(--background-color);
 }
 #begin-banner button img {
     width: 42px; 
     height: 42px;
     filter: invert(100%) sepia(91%) saturate(36%) hue-rotate(207deg) brightness(110%) contrast(110%);
+}
+#begin-banner a {
+  text-decoration: none;
 }
 #description-cards {
     display: grid;
@@ -259,6 +469,14 @@ body {
     color: var(--logo);
     margin-top: auto;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.cards-logo img {
+  align-self: center;
+  height: 30px;
+  width: 50px;
+  filter: invert(35%) sepia(13%) saturate(0%) hue-rotate(207deg) brightness(100%) contrast(84%);
 }
 
 /* ======= HOME TABLET/SMALL SCREENS =========== */
@@ -275,6 +493,8 @@ body {
         align-items: center;
         justify-content: space-between;
         padding: 5vw;
+        padding-top: 100px;
+        height: 86vh;
     }
     #hero-text {
         margin-left: 20px;
@@ -462,7 +682,7 @@ body {
       scale: 1.3;
     }
     #topic-bubbles {
-      margin-right: 6vw;
+      margin-right: 1vw;
     }
     .bubble {
         height: 115px;
@@ -511,6 +731,51 @@ body {
     top: 290px;
     width: 135px;
     height: 135px;
+   }
+   #description-cards {
+    grid-template-columns: repeat(auto-fit, 310px);
+   }
+   .cards {
+    width: 310px;
+   }
+}
+@media (min-width: 1300px) {
+  #hero {
+    height: 90vh;
+  }
+  .bubble {
+    scale: 1.3;
+  }
+  .b1 {
+        right: 10px;
+        top: -89px;
+  }
+  .b2 {
+        right: 183px;
+        top: -110px;
+  }
+  .b4 {
+        right: 320px;
+        top: 45px;
+  }
+  .b5 {
+    right: 312px;
+    top: 200px;
+  }
+  .b6 {
+    right: 200px;
+    top: 346px;
+  }
+  .b7 {
+    right: 6px;
+    top: 345px;
+  }
+  #description-cards {
+    grid-template-columns: repeat(auto-fit, 360px);
+    gap: 50px;
+   }
+   .cards {
+    width: 360px;
    }
 }
 
@@ -848,10 +1113,15 @@ body {
     padding: 60px;
 }
 
-#links a {
+#links a,
+#links button {
     text-decoration: none;
     color: var(--footer-header);
     font-family: "arcade";
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: inherit;
 }
 #terms-bottom {
     color: var(--footer-header);
@@ -1066,4 +1336,39 @@ body {
     width: auto;
     padding: 0.9rem 3rem;
   }
+}
+/* ====== ACCOUNT PAGE ====== */
+#account-page {
+  background: linear-gradient(107deg, rgba(243, 54, 38, 1) 1%, rgba(243, 115, 47, 1) 11%, rgba(243, 118, 48, 1) 60%, rgba(201, 45, 38, 1) 79%, rgba(75, 22, 28, 1) 100%);
+  padding: 120px 0 140px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#bento-box {
+  display: flex;
+  flex-direction: column;
+}
+#box-left {
+  background-color: pink;
+  padding: 20px 30px;
+}
+
+
+
+
+
+/* ====== ACCOUNT TABLET ====== */
+@media (min-width: 769px) {
+}
+
+
+/* ====== ACCOUNT DESKTOP LARGE SCREENS====== */
+@media (min-width: 1025px) {
+  
+}
+
+/* ======= ACCOUNT EXTRA LARGE SCREENS ====== */
+@media (min-width: 1300px) {
+
 }

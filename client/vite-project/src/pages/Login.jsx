@@ -11,14 +11,47 @@ function Login() {
   const [password, setPassword] = useState('')
   // Sets any potential error messages 
   const [error, setError] = useState('')
+  // Sets the validation errors
+  const [validationErrors, setValidationErrors] = useState({})
   // Gets the login/logout function from the AuthContext to keep track of users that are logged in
   const { login } = useAuth()
   const navigate = useNavigate()
+
+    const validateForm = () => {
+    const errors = {}
+
+    // Username must be min 3 chars, include at least one letter
+    if (username.length < 3) {
+      errors.username = 'Username must be at least 3 characters'
+    } else if (!/[a-zA-Z]/.test(username)) {
+      errors.username = 'Username must include at least one letter'
+    }
+
+    // Password must be min 8 chars, must have a letter, number, and special char
+    if (password.length < 8) {
+      errors.password = 'Password must be at least 8 characters'
+    } else if (!/[a-zA-Z]/.test(password)) {
+      errors.password = 'Password must include at least one letter'
+    } else if (!/[0-9]/.test(password)) {
+      errors.password = 'Password must include at least one number'
+    } else if (!/[^a-zA-Z0-9]/.test(password)) {
+      errors.password = 'Password must include at least one special character'
+    }
+
+    return errors
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     // Clears any potential previous error messages 
     setError('')
+
+    // Run validation and return if there are errors
+    if (isRegistering) {
+      const errors = validateForm()
+      setValidationErrors(errors)
+      if (Object.keys(errors).length > 0) return
+    }
 
     // Set endpoint to registration or login endpoint 
     const endpoint = isRegistering ? '/api/register' : '/api/login'
@@ -55,6 +88,21 @@ function Login() {
     }
   }
 
+  // Clear the field's validation error as the user types
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value)
+    if (validationErrors.username) {
+      setValidationErrors((prev) => ({ ...prev, username: '' }))
+    }
+  }
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value)
+    if (validationErrors.password) {
+      setValidationErrors((prev) => ({ ...prev, password: '' }))
+    }
+  }
+
   return (
     <div>
       {/* Changes based on whether the user is registering or logging in */}
@@ -66,18 +114,26 @@ function Login() {
           <input
             type="text"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={handleUsernameChange}
             required
           />
+        {/* Show username validation error only in register mode */}
+          {isRegistering && validationErrors.username && (
+            <p>{validationErrors.username}</p>
+          )}
         </div>
         <div>
           <label>Password</label>
           <input
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handlePasswordChange}
             required
           />
+          {/* Show password validation error only in register mode */}
+          {isRegistering && validationErrors.password && (
+            <p>{validationErrors.password}</p>
+          )}
         </div>
 
         {/* Renders the error message if error exists */}
@@ -90,7 +146,12 @@ function Login() {
       </form>
 
       {/* Toggle between login and register mode */}
-      <button onClick={() => setIsRegistering(!isRegistering)}>
+        <button onClick={() => {
+          setIsRegistering(!isRegistering)
+          // Clear validation state when switching modes
+          setValidationErrors({})
+          setError('')
+        }}>
         {isRegistering ? 'Already have an account? Login' : "Don't have an account? Register"}
       </button>
     </div>
