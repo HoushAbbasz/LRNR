@@ -299,6 +299,13 @@ body {
   }
   .nav-welcome {
     display: none;
+    /* align-items: center;
+    justify-content: center;
+    font-family: "akira";
+    background-color: rgba(0, 0, 0, 0.22);
+    margin: 0;
+    height: 30px;
+    color: var(--white) */
   }
 }
 /* ====== HOME PAGE ====== */
@@ -789,7 +796,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem 1.25rem;
+  padding: 4rem 1.25rem;
   font-family: var(--font-ui);
 }
 
@@ -799,6 +806,7 @@ body {
   padding: 2rem 1.5rem;
   width: 100%;
   max-width: 600px;
+  margin-top: 60px;
 }
 
 .quiz-title {
@@ -1166,6 +1174,59 @@ body {
   gap: 30vw;
 }
 }
+/* ================== MODAL ====================== */
+#modal-container {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+#modal {
+  background-color: var(--light-background);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  font-family: "akira";
+  color: var(--white);
+  -webkit-box-shadow: 0px 0px 23px 5px rgba(243,118,48,0.69); 
+  box-shadow: 0px 0px 23px 5px rgba(243,118,48,0.69);
+}
+#modal p {
+  color: var(--orange);
+  font-size: 15px;
+}
+#modal #buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+#modal #buttons #play {
+  border-radius: 20px;
+  padding: 16px 20px;
+  background-color: green;
+  border: none;
+  font-family: "arcade";
+  font-size: 10px;
+}
+#modal #buttons #leave {
+  border-radius: 20px;
+  padding: 16px 20px;
+  background-color: red;
+  border: none;
+  font-family: "arcade";
+  font-size: 10px;
+}
+#buttons #leave:hover,
+#buttons #play:hover {
+  -webkit-box-shadow: 0px 0px 12px 2px rgba(243,118,48,0.69); 
+  box-shadow: 0px 0px 12px 2px rgba(243,118,48,0.69);
+}
 
 /* ============================================================
    ====================== RESULTS PAGE ========================
@@ -1411,10 +1472,16 @@ body {
   box-shadow: 0 0 20px rgba(243,118,48,0.15);
   
 }
+#box-right_bottom .score-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .score-info .stat {
   color: var(--orange);
   font-size: 20px;
-  font-family: "mirage";
+  font-family: "akira";
 }
 .score-info .value {
   font-family: "arcade";
@@ -1476,8 +1543,15 @@ body {
   flex-direction: row;
   justify-content: space-around;
 }
-
-
+#box-right_top {
+  font-family: "akira";
+}
+#box-right_top .expertise {
+  color: var(--orange);
+}
+#box-right_top .score {
+  color: var(--orange)
+}
 
 /* ====== ACCOUNT TABLET ====== */
 @media (min-width: 769px) {
@@ -1533,10 +1607,12 @@ body {
 
 /* ====== ACCOUNT DESKTOP LARGE SCREENS====== */
 @media (min-width: 1025px) {
-  
 }
 
 /* ======= ACCOUNT EXTRA LARGE SCREENS ====== */
 @media (min-width: 1300px) {
-
+  #box-right_bottom .score-info {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }

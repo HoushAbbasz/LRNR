@@ -140,22 +140,13 @@ function QuizFlow() {
     <>
       {/* Abandon quiz modal */}
       {showModal && (
-        <div style={{
-          position: 'fixed', inset: 0,
-          backgroundColor: 'rgba(0,0,0,0.5)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          zIndex: 1000,
-        }}>
-          <div style={{
-            background: 'white', borderRadius: '8px',
-            padding: '2rem', maxWidth: '400px', width: '90%',
-            textAlign: 'center',
-          }}>
+        <div id="modal-container">
+          <div id="modal">
             <h2>Abandon quiz?</h2>
             <p>Your progress will be lost if you leave now.</p>
-            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '1.5rem' }}>
-              <button onClick={cancelLeave}>Keep playing</button>
-              <button onClick={confirmLeave}>Leave anyway</button>
+            <div id="buttons">
+              <button onClick={cancelLeave} id="play">Keep playing</button>
+              <button onClick={confirmLeave} id="leave">Leave anyway</button>
             </div>
           </div>
         </div>

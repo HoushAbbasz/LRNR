@@ -74,7 +74,7 @@ function Account() {
           // Loop through each score and display the topic, expertise, question count, and best score
           scores.map((s) => (
             <p key={`${s.topic}-${s.expertise}-${s.num_of_questions}`}>
-              {s.topic} · {s.expertise} · {s.num_of_questions} questions — {s.best_score} / {s.num_of_questions}
+              {s.topic} · <span className="expertise">{s.expertise}</span> · {s.num_of_questions} questions — <span className="score">{s.best_score} / {s.num_of_questions}</span>
             </p>
           ))
         )}
