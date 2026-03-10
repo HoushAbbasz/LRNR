@@ -1220,18 +1220,182 @@ body {
 #bento-box {
   display: flex;
   flex-direction: column;
+  gap: 40px;
+  padding: 30px;
 }
 #box-left {
-  background-color: pink;
-  padding: 20px 30px;
+  background-color: var(--background-color);
+  color: var(--white);
+  font-family: "arcade";
+  text-align: center;
+  padding: 20px 55px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 20px rgba(243,118,48,0.15);
+}
+#box-left h6 {
+  font-family: "zt";
+  font-size: 18px;
+  color: var(--orange)
+}
+#sub-title {
+  margin-bottom: 20px;
+}
+#box-left button {
+  background: var(--orange);
+  padding: 20px 16px;
+  border-radius: 23px;
+  border: none;
+  font-family: "arcade";
+  font-size: 10px;
+}
+#box-right_top {
+  background-color: var(--light-background);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 20px rgba(243,118,48,0.15);
+  padding: 34px;
+  font-family: "zt";
+}
+#box-right_top h2 {
+  font-family: "arcade";
+}
+#box-right_bottom {
+  padding: 50px;
+  background-color: var(--background-color);
+  color: var(--white);
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-family: "zt";
+  gap: 50px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 20px rgba(243,118,48,0.15);
+  
+}
+.score-info .stat {
+  color: var(--orange);
+  font-size: 20px;
+  font-family: "mirage";
+}
+.score-info .value {
+  font-family: "arcade";
+  font-size: 18px;
+}
+.xp-donut-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.xp-donut {
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  margin-top: 20px;
+}
 
+.xp-donut-inner {
+  width: 65%;
+  height: 65%;
+  border-radius: 50%;
+  background: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.xp-donut-label {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1;
+  font-family: "zt";
+}
+
+.xp-donut-level {
+  margin: 0.2rem 0;
+  color: #fefefe;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  font-family: "arcade";
+}
+
+.xp-donut-sub {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  font-family: "zt";
+}
+.score-info {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 
 
 
 /* ====== ACCOUNT TABLET ====== */
 @media (min-width: 769px) {
+
+  #bento-box {
+    display: grid;
+    height: 100%;
+    width: 87%;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 16px;
+    padding: 8px;
+    
+  }
+  #box-left {
+    grid-column: span 2;
+    grid-row: span 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 100%;
+    background: linear-gradient(180deg, #0d0d0d 0%, #111111 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    border-radius: 28px;
+  }
+  #box-right_bottom {
+    grid-column: span 2;
+    grid-row: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #0d0d0d 0%, #111111 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    border-radius: 28px;
+  }
+  #box-right_top {
+    grid-column: span 2;
+    grid-row: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #0d0d0d 0%, #111111 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    border-radius: 28px;
+  }
+  
 }
 
 
