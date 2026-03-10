@@ -92,7 +92,7 @@ function QuizQuestions({ quizConfig, questions, onFinish }) {
   }
 
   return (
-    <div className="questions-page">
+    <main className="questions-page">
       <div className="questions-container">
 
         {/* Progress tracker */}
@@ -153,7 +153,7 @@ function QuizQuestions({ quizConfig, questions, onFinish }) {
         )}
 
       </div>
-    </div>
+    </main>
   )
 }
 
