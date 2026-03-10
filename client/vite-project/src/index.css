@@ -299,6 +299,13 @@ body {
   }
   .nav-welcome {
     display: none;
+    /* align-items: center;
+    justify-content: center;
+    font-family: "akira";
+    background-color: rgba(0, 0, 0, 0.22);
+    margin: 0;
+    height: 30px;
+    color: var(--white) */
   }
 }
 /* ====== HOME PAGE ====== */
@@ -446,6 +453,10 @@ body {
     display: flex;
     flex-direction: column;
 } 
+.cards:hover {
+  -webkit-box-shadow: 0px 0px 32px 8px rgba(243,118,48,0.69); 
+  box-shadow: 0px 0px 32px 8px rgba(243,118,48,0.69);
+}
 .cards h3 {
     line-height: 1.1;
     text-align: center;
@@ -789,17 +800,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8rem 1.25rem;
+  padding: 4rem 1.25rem;
+  font-family: var(--font-ui);
 }
-
-/* ====== Quiz Container ====== */
 
 .quiz-container {
   background-color: var(--background-color);
-  border-radius: 24px;
+  border-radius: 20px;
   padding: 2rem 1.5rem;
   width: 100%;
   max-width: 600px;
+  margin-top: 60px;
 }
 
 .quiz-title {
@@ -808,17 +819,14 @@ body {
   font-size: 2rem;
   text-align: center;
   margin-bottom: 0.5rem;
-  animation: fadeInUp 0.5s ease forwards;
-  opacity: 0;
 }
 
 .quiz-subtitle {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--white);
   text-align: center;
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   margin-bottom: 2rem;
-  animation: fadeInUp 0.5s ease 0.1s forwards;
-  opacity: 0;
+  font-family: var(--font-ui);
 }
 
 /* ====== Quiz Form ====== */
@@ -826,40 +834,35 @@ body {
 .quiz-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
   width: 100%;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  animation: fadeInUp 0.5s ease forwards;
-  opacity: 0;
+  gap: 0.4rem;
 }
-
-.form-group:nth-child(1) { animation-delay: 0.1s; }
-.form-group:nth-child(2) { animation-delay: 0.2s; }
-.form-group:nth-child(3) { animation-delay: 0.3s; }
-.form-group:nth-child(4) { animation-delay: 0.4s; }
 
 .form-group label {
   color: var(--white);
+  font-size: 1.1rem;
   text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  font-size: 0.75rem;
+  letter-spacing: 0.08rem;
+  font-family: var(--font-ui);
 }
 
 .form-group select {
   background-color: var(--light-background);
   color: var(--white);
   border: 1px solid var(--vibrant-orange);
-  padding: 0.85rem 1rem;
-  border-radius: 12px;
-  appearance: none;
-  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  font-size: 1.2rem;
   width: 100%;
   cursor: pointer;
+  appearance: none;
+  font-family: var(--font-ui);
 }
 
 .form-group select:focus {
@@ -874,19 +877,19 @@ body {
   color: var(--background-color);
   border: none;
   border-radius: 50px;
-  padding: 1rem 2rem;
+  padding: 0.9rem 2rem;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.2rem;
   cursor: pointer;
   width: 100%;
-  margin-top: 1rem;
-  letter-spacing: 0.05rem;
+  margin-top: 0.5rem;
+  min-height: 44px;
+  font-family: var(--font-ui);
 }
 
 .quiz-submit-btn:hover {
   background-color: var(--orange);
   animation: glowPulse 1.5s ease-in-out infinite;
-  transition: background-color 0.2s ease;
 }
 
 .quiz-submit-btn:disabled {
@@ -905,8 +908,8 @@ body {
 /* ====== Loading Spinner ====== */
 
 .spinner {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   border: 3px solid rgba(0, 0, 0, 0.3);
   border-top-color: black;
   border-radius: 50%;
@@ -927,17 +930,172 @@ body {
     font-size: 3rem;
   }
 
-  .quiz-subtitle {
-    font-size: 1.1rem;
+  .quiz-submit-btn {
+    width: auto;
+    align-self: center;
+    padding: 0.9rem 3rem;
+  }
+}
+
+/* ============================================================
+   =================== QUIZ QUESTIONS PAGE ====================
+   ============================================================ */
+
+.questions-page {
+  background: linear-gradient(107deg, rgba(243, 54, 38, 1) 1%, rgba(243, 115, 47, 1) 11%, rgba(243, 118, 48, 1) 60%, rgba(201, 45, 38, 1) 79%, rgba(75, 22, 28, 1) 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  font-family: var(--font-ui);
+}
+
+/* ====== Questions Container ====== */
+
+.questions-container {
+  background-color: var(--background-color);
+  border-radius: 20px;
+  padding: 1.5rem 1rem;
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.questions-progress {
+  font-family: "akira";
+  color: var(--vibrant-orange);
+  font-size: 1rem;
+  text-align: center;
+  margin: 0;
+}
+
+.questions-meta {
+  color: var(--white);
+  font-size: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.questions-text {
+  color: var(--white);
+  font-family: var(--font-ui);
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ====== Answer Form ====== */
+
+.questions-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.questions-textarea {
+  background-color: var(--light-background);
+  color: var(--white);
+  border: 1px solid var(--vibrant-orange);
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 1rem;
+  font-family: var(--font-ui);
+  width: 100%;
+  resize: vertical;
+  min-height: 120px;
+  box-sizing: border-box;
+}
+
+.questions-textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--vibrant-orange);
+}
+
+.questions-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ====== Submit + Next Buttons ====== */
+
+.questions-submit-btn,
+.questions-next-btn {
+  background-color: var(--vibrant-orange);
+  color: var(--background-color);
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  font-size: 1rem;
+  font-family: var(--font-ui);
+  cursor: pointer;
+  width: 100%;
+  min-height: 44px;
+}
+
+.questions-submit-btn:hover,
+.questions-next-btn:hover {
+  background-color: var(--orange);
+  animation: glowPulse 1.5s ease-in-out infinite;
+}
+
+.questions-submit-btn:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+/* ====== Feedback Section ====== */
+
+.questions-feedback {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.questions-your-answer,
+.questions-correct-answer,
+.questions-explanation {
+  color: var(--white);
+  font-size: 1rem;
+  font-family: var(--font-ui);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.questions-correct { color: #4caf50; font-weight: bold; font-size: 1rem; margin: 0; }
+.questions-incorrect { color: #ff4444; font-weight: bold; font-size: 1rem; margin: 0; }
+
+/* ====== Tablet and Up ====== */
+
+@media (min-width: 768px) {
+  .questions-page {
+    align-items: center;
+    padding: 2rem;
   }
 
-  .quiz-submit-btn {
+  .questions-container {
+    padding: 3rem 2.5rem;
+  }
+
+  .questions-progress {
+    font-size: 1.5rem;
+  }
+
+  .questions-text {
+    font-size: 1.5rem;
+  }
+
+  .questions-submit-btn,
+  .questions-next-btn {
     width: auto;
     align-self: center;
     padding: 1rem 3rem;
   }
 }
-
 
 /* ============= FOOTER ============= */
 #footer {
@@ -1020,26 +1178,80 @@ body {
   gap: 30vw;
 }
 }
-
-/* ============================================================
-   =================== QUIZ QUESTIONS PAGE ====================
-   ============================================================ */
-
-.questions-page {
-  background: linear-gradient(107deg, rgba(243, 54, 38, 1) 1%, rgba(243, 115, 47, 1) 11%, rgba(243, 118, 48, 1) 60%, rgba(201, 45, 38, 1) 79%, rgba(75, 22, 28, 1) 100%);
-  min-height: 100vh;
+/* ================== MODAL ====================== */
+#modal-container {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem 1.25rem;
+  z-index: 1000;
+}
+#modal {
+  background-color: var(--light-background);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  font-family: "akira";
+  color: var(--white);
+  -webkit-box-shadow: 0px 0px 23px 5px rgba(243,118,48,0.69); 
+  box-shadow: 0px 0px 23px 5px rgba(243,118,48,0.69);
+}
+#modal p {
+  color: var(--orange);
+  font-size: 15px;
+}
+#modal #buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+#modal #buttons #play {
+  border-radius: 20px;
+  padding: 16px 20px;
+  background-color: green;
+  border: none;
+  font-family: "arcade";
+  font-size: 10px;
+}
+#modal #buttons #leave {
+  border-radius: 20px;
+  padding: 16px 20px;
+  background-color: red;
+  border: none;
+  font-family: "arcade";
+  font-size: 10px;
+}
+#buttons #leave:hover,
+#buttons #play:hover {
+  -webkit-box-shadow: 0px 0px 12px 2px rgba(243,118,48,0.69); 
+  box-shadow: 0px 0px 12px 2px rgba(243,118,48,0.69);
 }
 
-/* ====== Questions Container ====== */
+/* ============================================================
+   ====================== RESULTS PAGE ========================
+   ============================================================ */
 
-.questions-container {
+.results-page {
+  background: linear-gradient(107deg, rgba(243, 54, 38, 1) 1%, rgba(243, 115, 47, 1) 11%, rgba(243, 118, 48, 1) 60%, rgba(201, 45, 38, 1) 79%, rgba(75, 22, 28, 1) 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  font-family: var(--font-ui);
+}
+
+/* ====== Container ====== */
+
+.results-container {
   background-color: var(--background-color);
-  border-radius: 24px;
-  padding: 2rem 1.5rem;
+  border-radius: 20px;
+  padding: 1.5rem 1rem;
   width: 100%;
   max-width: 700px;
   display: flex;
@@ -1047,166 +1259,151 @@ body {
   gap: 1.25rem;
 }
 
-.questions-progress {
+/* ====== Header ====== */
+
+.results-title {
+  font-family: "akira";
+  color: var(--white);
+  font-size: 2rem;
+  text-align: center;
+  margin: 0;
+}
+
+.results-meta,
+.results-correct-count,
+.results-points-per,
+.results-streak,
+.results-score-label {
+  color: var(--white);
+  font-size: 1rem;
+  text-align: center;
+  margin: 0.2rem 0;
+}
+
+.results-meta { text-transform: uppercase; }
+
+/* ====== Score Box ====== */
+
+.results-score-box {
+  background-color: var(--light-background);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.results-score {
   font-family: "akira";
   color: var(--vibrant-orange);
-  font-size: 0.85rem;
-  text-align: center;
-  margin: 0;
-  letter-spacing: 0.1rem;
+  font-size: 3rem;
+  margin: 0 0 0.5rem 0;
 }
 
-.questions-meta {
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 0.75rem;
-  text-align: center;
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.05rem;
-}
+/* ====== Review Section ====== */
 
-.questions-text {
+.results-review-title {
+  font-family: "akira";
   color: var(--white);
-  font-size: 1.25rem;
-  text-align: center;
-  line-height: 1.5;
-  margin: 0.5rem 0;
+  font-size: 1rem;
+  margin: 0;
 }
 
-/* ====== Answer Form ====== */
-
-.questions-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.questions-textarea {
-  background-color: var(--light-background);
-  color: var(--white);
-  border: 1px solid var(--vibrant-orange);
-  border-radius: 12px;
+.results-review-item {
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-left: 4px solid transparent;
+  border-radius: 8px;
+}
+
+.results-review-item.correct {
+  background-color: rgba(76, 175, 80, 0.1);
+  border-left-color: #4caf50;
+}
+
+.results-review-item.incorrect {
+  background-color: rgba(255, 68, 68, 0.1);
+  border-left-color: #ff4444;
+}
+
+.results-question,
+.results-user-answer,
+.results-correct-answer,
+.results-explanation {
+  color: var(--white);
   font-size: 1rem;
-  width: 100%;
-  resize: vertical;
-  min-height: 120px;
-  box-sizing: border-box;
+  margin: 0;
+  line-height: 1.6;
 }
 
-.questions-textarea:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--vibrant-orange);
-}
+.results-correct { color: #4caf50; font-weight: bold; font-size: 1rem; margin: 0; }
+.results-incorrect { color: #ff4444; font-weight: bold; font-size: 1rem; margin: 0; }
 
-.questions-textarea::placeholder {
-  color: rgba(255, 255, 255, 0.3);
-}
+/* ====== Buttons ====== */
 
-/* ====== Submit Button ====== */
-
-.questions-submit-btn {
-  background-color: var(--vibrant-orange);
-  color: var(--background-color);
-  border: none;
-  border-radius: 50px;
-  padding: 1rem 2rem;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  width: 100%;
-  letter-spacing: 0.05rem;
-}
-
-.questions-submit-btn:hover {
-  background-color: var(--orange);
-  animation: glowPulse 1.5s ease-in-out infinite;
-  transition: background-color 0.2s ease;
-}
-
-.questions-submit-btn:disabled {
-  background-color: #555;
-  cursor: not-allowed;
-}
-
-/* ====== Feedback Section ====== */
-
-.questions-feedback {
+.results-buttons {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.questions-your-answer {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.9rem;
-  margin: 0;
-}
-
-.questions-correct {
-  color: #4caf50;
-  font-weight: bold;
-  font-size: 1.1rem;
-  margin: 0;
-}
-
-.questions-incorrect {
-  color: #ff4444;
-  font-weight: bold;
-  font-size: 1.1rem;
-  margin: 0;
-}
-
-.questions-correct-answer {
-  color: var(--white);
-  font-size: 0.95rem;
-  margin: 0;
-}
-
-.questions-explanation {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.9rem;
-  line-height: 1.5;
-  margin: 0;
-}
-
-/* ====== Next Button ====== */
-
-.questions-next-btn {
-  background-color: var(--vibrant-orange);
-  color: var(--background-color);
-  border: none;
+.results-retake-btn,
+.results-account-btn {
   border-radius: 50px;
-  padding: 1rem 2rem;
+  padding: 0.9rem 2rem;
   font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
   width: 100%;
-  letter-spacing: 0.05rem;
+  min-height: 44px;
 }
 
-.questions-next-btn:hover {
+.results-retake-btn {
+  background-color: var(--vibrant-orange);
+  color: var(--background-color);
+  border: none;
+}
+
+.results-retake-btn:hover {
   background-color: var(--orange);
   animation: glowPulse 1.5s ease-in-out infinite;
-  transition: background-color 0.2s ease;
+}
+
+.results-account-btn {
+  background-color: transparent;
+  color: var(--white);
+  border: 2px solid var(--white);
+}
+
+.results-account-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* ====== Tablet and Up ====== */
 
 @media (min-width: 768px) {
-  .questions-container {
+  .results-page {
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .results-container {
     padding: 3rem 2.5rem;
   }
 
-  .questions-text {
-    font-size: 1.5rem;
+  .results-title {
+    font-size: 3rem;
   }
 
-  .questions-submit-btn,
-  .questions-next-btn {
+  .results-buttons {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .results-retake-btn,
+  .results-account-btn {
     width: auto;
-    align-self: center;
-    padding: 1rem 3rem;
+    padding: 0.9rem 3rem;
   }
 }
 /* ====== ACCOUNT PAGE ====== */
@@ -1220,24 +1417,208 @@ body {
 #bento-box {
   display: flex;
   flex-direction: column;
+  gap: 40px;
+  padding: 30px;
 }
 #box-left {
-  background-color: pink;
-  padding: 20px 30px;
+  background-color: var(--background-color);
+  color: var(--white);
+  text-align: center;
+  padding: 20px 55px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 20px rgba(243,118,48,0.15);
+  font-family: "arcade";
 }
 
+#box-left h6 {
+  font-family: "akira";
+  font-size: 18px;
+  color: var(--orange)
+}
+#sub-title {
+  margin-bottom: 20px;
+}
+#box-left button {
+  background: var(--orange);
+  padding: 20px 16px;
+  border-radius: 23px;
+  border: none;
+  font-family: "arcade";
+  font-size: 10px;
+}
+#box-left button:hover {
+  -webkit-box-shadow: 0px 0px 36px 5px rgba(254,254,254,0.73); 
+  box-shadow: 0px 0px 36px 5px rgba(254,254,254,0.73);
+}
+#box-right_top {
+  background-color: var(--light-background);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 20px rgba(243,118,48,0.15);
+  padding: 34px;
+  font-family: "zt";
+}
+#box-right_top h2 {
+  font-family: "arcade";
+}
+#box-right_bottom {
+  padding: 50px;
+  background-color: var(--background-color);
+  color: var(--white);
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-family: "zt";
+  gap: 50px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 20px rgba(243,118,48,0.15);
+  
+}
+#box-right_bottom .days {
+  font-family: "akira";
+}
+#box-right_bottom .score-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.score-info .stat {
+  color: var(--orange);
+  font-size: 20px;
+  font-family: "akira";
+}
+.score-info .value {
+  font-family: "arcade";
+  font-size: 18px;
+}
+.xp-donut-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.xp-donut {
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  margin-top: 20px;
+}
 
+.xp-donut-inner {
+  width: 65%;
+  height: 65%;
+  border-radius: 50%;
+  background: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
 
+.xp-donut-label {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1;
+  font-family: "zt";
+}
+
+.xp-donut-level {
+  margin: 0.2rem 0;
+  color: #fefefe;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  font-family: "arcade";
+}
+
+.xp-donut-sub {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  font-family: "zt";
+}
+.score-info {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+#box-right_top {
+  font-family: "akira";
+}
+#box-right_top .expertise {
+  color: var(--orange);
+}
+#box-right_top .score {
+  color: var(--orange)
+}
 
 /* ====== ACCOUNT TABLET ====== */
 @media (min-width: 769px) {
+
+  #bento-box {
+    display: grid;
+    height: 100%;
+    width: 87%;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 16px;
+    padding: 8px;
+    
+  }
+  #box-left {
+    grid-column: span 2;
+    grid-row: span 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 100%;
+    background: linear-gradient(180deg, #0d0d0d 0%, #111111 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    border-radius: 28px;
+  }
+  #box-right_bottom {
+    grid-column: span 2;
+    grid-row: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #0d0d0d 0%, #111111 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    border-radius: 28px;
+  }
+  #box-right_top {
+    grid-column: span 2;
+    grid-row: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #0d0d0d 0%, #111111 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    border-radius: 28px;
+  }
+  
 }
 
 
 /* ====== ACCOUNT DESKTOP LARGE SCREENS====== */
 @media (min-width: 1025px) {
-  
 }
 
 /* ======= ACCOUNT EXTRA LARGE SCREENS ====== */
@@ -1252,24 +1633,7 @@ body {
 
 /* ====== LOGIN PAGE ====== */
 
-/* .login-page {
-  background-color: var(--light-background);
-  margin: 0;
-  padding: 0;
-}
-.login-container {
-  background: #F33626;
-  background: linear-gradient(107deg, rgba(243, 54, 38, 1) 1%, rgba(243, 115, 47, 1) 11%, rgba(243, 118, 48, 1) 60%, rgba(201, 45, 38, 1) 79%, rgba(75, 22, 28, 1) 100%);
-  height: 75vh;
-  color: var(--white);
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  justify-content: center;
-  margin-bottom: 0;
-  border-radius: 0 0 40px 40px;
-  padding-top: 90px;
-} */
+
 
 .login-page {
   background: #F33626;
@@ -1436,5 +1800,8 @@ body {
     width: auto;
     align-self: center;
     padding: 1rem 3rem;
+  #box-right_bottom .score-info {
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
