@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 // useAuth gives us access to the login/logout function
 import { useAuth } from '../context/AuthContext'
+import XpDonut from '../components/XpDonut'
+
 
 function Account() {
   // Gets the JWT token and login status from AuthContext
@@ -46,9 +48,24 @@ function Account() {
       <div id="bento-box">
         <section id="box-left">
           <div id="account">
-            <h1>Welcome, {account.username}</h1>
+            <h1>Welcome back, <br></br>{account.username}!</h1>
+            <h6>Track your progress, keep your streak alive, and level up with every quiz!</h6>
           </div>
+          <div id="sub-title">Ready to keep learning?</div>
+          <Link to="/quiz">
+          <button>Take a quiz!</button>
+          </Link>
+
         </section>
+       
+        <div id="box-right_bottom">
+            <XpDonut xp={account.xp} level={account.level} size={170} />
+            <div className="score-info">
+            <p><span className="stat">XP: </span><span className="value"> {account.xp}</span></p>
+            <p><span className="stat">Streak: </span><span className="value">{account.streak}</span> days</p>
+            <p><span className="stat">Level: </span><span className="value">{account.level}</span></p>
+            </div>
+        </div> 
         <div id="box-right_top">
             <h2>Best Scores</h2>
         {scores.length === 0 ? (
@@ -62,11 +79,6 @@ function Account() {
           ))
         )}
           </div>
-          <div id="box-right_bottom">
-            <p>XP: {account.xp}</p>
-            <p>Streak: {account.streak} days</p>
-            <p>Level: {account.level}</p>
-        </div>
       </div>
     </div>
   )
