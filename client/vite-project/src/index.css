@@ -453,6 +453,10 @@ body {
     display: flex;
     flex-direction: column;
 } 
+.cards:hover {
+  -webkit-box-shadow: 0px 0px 32px 8px rgba(243,118,48,0.69); 
+  box-shadow: 0px 0px 32px 8px rgba(243,118,48,0.69);
+}
 .cards h3 {
     line-height: 1.1;
     text-align: center;
@@ -1419,15 +1423,16 @@ body {
 #box-left {
   background-color: var(--background-color);
   color: var(--white);
-  font-family: "arcade";
   text-align: center;
   padding: 20px 55px;
   border-radius: 20px;
   border: 1px solid rgba(255,255,255,0.08);
   box-shadow: 0 0 20px rgba(243,118,48,0.15);
+  font-family: "arcade";
 }
+
 #box-left h6 {
-  font-family: "zt";
+  font-family: "akira";
   font-size: 18px;
   color: var(--orange)
 }
@@ -1441,6 +1446,10 @@ body {
   border: none;
   font-family: "arcade";
   font-size: 10px;
+}
+#box-left button:hover {
+  -webkit-box-shadow: 0px 0px 36px 5px rgba(254,254,254,0.73); 
+  box-shadow: 0px 0px 36px 5px rgba(254,254,254,0.73);
 }
 #box-right_top {
   background-color: var(--light-background);
@@ -1471,6 +1480,9 @@ body {
   border: 1px solid rgba(255,255,255,0.08);
   box-shadow: 0 0 20px rgba(243,118,48,0.15);
   
+}
+#box-right_bottom .days {
+  font-family: "akira";
 }
 #box-right_bottom .score-info {
   display: flex;

@@ -62,7 +62,7 @@ function Account() {
             <XpDonut xp={account.xp} level={account.level} size={170} />
             <div className="score-info">
             <p><span className="stat">XP: </span><span className="value"> {account.xp}</span></p>
-            <p><span className="stat">Streak: </span><span className="value">{account.streak}</span> days</p>
+            <p><span className="stat">Streak: </span><span className="value">{account.streak} </span> <span className="days">days</span></p>
             <p><span className="stat">Level: </span><span className="value">{account.level}</span></p>
             </div>
         </div> 
