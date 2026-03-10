@@ -11,8 +11,10 @@ function Navbar() {
   const { username, isLoggedIn, logout } = useAuth()
   const navigate = useNavigate()
 
-  const { requestNav } = useNavRequest()
-  const goTo = requestNav ?? navigate
+// Use useNavRequest context to see if they are trying to navigate from quiz flow
+const { requestNav } = useNavRequest() 
+// If requestNav is null, use navigate
+const goTo = requestNav ?? navigate 
 
   const [open, setOpen] = useState(false); //controlling if mobile menu is open
 
@@ -26,6 +28,7 @@ function Navbar() {
   const closeMenu = () => setOpen(false);
 
   const handleNav = (path) => {
+    // close the mobile menu before navigating
     closeMenu()
     goTo(path)
   }
