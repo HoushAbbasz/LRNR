@@ -62,7 +62,7 @@ function Account() {
             <XpDonut xp={account.xp} level={account.level} size={170} />
             <div className="score-info">
             <p><span className="stat">XP: </span><span className="value"> {account.xp}</span></p>
-            <p><span className="stat">Streak: </span><span className="value">{account.streak}</span> days</p>
+            <p><span className="stat">Streak: </span><span className="value">{account.streak} </span> <span className="days">days</span></p>
             <p><span className="stat">Level: </span><span className="value">{account.level}</span></p>
             </div>
         </div> 
@@ -74,7 +74,7 @@ function Account() {
           // Loop through each score and display the topic, expertise, question count, and best score
           scores.map((s) => (
             <p key={`${s.topic}-${s.expertise}-${s.num_of_questions}`}>
-              {s.topic} · {s.expertise} · {s.num_of_questions} questions — {s.best_score} / {s.num_of_questions}
+              {s.topic} · <span className="expertise">{s.expertise}</span> · {s.num_of_questions} questions — <span className="score">{s.best_score} / {s.num_of_questions}</span>
             </p>
           ))
         )}
