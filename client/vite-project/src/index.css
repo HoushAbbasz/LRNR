@@ -1803,5 +1803,6 @@ body {
   #box-right_bottom .score-info {
     flex-direction: row;
     justify-content: space-between;
+    }
   }
 }
