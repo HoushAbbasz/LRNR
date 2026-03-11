@@ -104,14 +104,18 @@ function Login() {
   }
 
   return (
-    <div>
+    <div className="login-page">
+    <div className="login-container">
       {/* Changes based on whether the user is registering or logging in */}
-      <h1>{isRegistering ? 'Create Account' : 'Login'}</h1>
-
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username</label>
+      <h1 className="login-title">{isRegistering ? 'Create Account' : 'Login'}</h1>
+      <p className="login-subtitle">
+        {isRegistering ? "Join LRNR. Prove yourself." : "Welcome back to LRNR"}
+      </p>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <div className="login-form-group">
+          <label className="login-label">Username</label>
           <input
+            className="login-input" 
             type="text"
             value={username}
             onChange={handleUsernameChange}
@@ -119,12 +123,13 @@ function Login() {
           />
         {/* Show username validation error only in register mode */}
           {isRegistering && validationErrors.username && (
-            <p>{validationErrors.username}</p>
+            <p className="login-error">{validationErrors.username}</p>
           )}
         </div>
-        <div>
-          <label>Password</label>
+        <div className="login-form-group">
+          <label className='login-label'>Password</label>
           <input
+            className="login-input"
             type="password"
             value={password}
             onChange={handlePasswordChange}
@@ -132,21 +137,23 @@ function Login() {
           />
           {/* Show password validation error only in register mode */}
           {isRegistering && validationErrors.password && (
-            <p>{validationErrors.password}</p>
+            <p className='login-error'>{validationErrors.password}</p>
           )}
         </div>
 
         {/* Renders the error message if error exists */}
-        {error && <p>{error}</p>}
+        {error && <p className='login-error'>{error}</p>}
 
         {/* Label changes based on the register/login status */}
-        <button type="submit">
+        <button type="submit" className='login-submit-btn'>
           {isRegistering ? 'Create Account' : 'Login'}
         </button>
       </form>
 
       {/* Toggle between login and register mode */}
-        <button onClick={() => {
+        <button 
+          className='login-toggle-btn'
+          onClick={() => {
           setIsRegistering(!isRegistering)
           // Clear validation state when switching modes
           setValidationErrors({})
@@ -155,6 +162,7 @@ function Login() {
         {isRegistering ? 'Already have an account? Login' : "Don't have an account? Register"}
       </button>
     </div>
+  </div>
   )
 }
 
