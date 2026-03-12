@@ -99,7 +99,7 @@ function QuizFlow() {
 
     // Saves the score to the database, also updates XP and level
     try {
-      const response = await fetch('http://localhost:3000/api/score', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/score`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

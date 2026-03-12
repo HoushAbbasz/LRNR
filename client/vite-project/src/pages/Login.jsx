@@ -58,7 +58,7 @@ function Login() {
 
     try {
       // Send the username and password to the register/login endpoint
-      const response = await fetch(`http://localhost:3000${endpoint}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         // Convert the username and password into a JSON string for the request body

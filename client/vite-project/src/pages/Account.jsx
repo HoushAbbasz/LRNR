@@ -24,7 +24,7 @@ function Account() {
     // Fetches the user's account data and quiz scores 
     const fetchAccount = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/account', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/account`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         const data = await response.json()

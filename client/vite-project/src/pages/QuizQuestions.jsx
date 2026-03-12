@@ -35,7 +35,7 @@ function QuizQuestions({ quizConfig, questions, onFinish }) {
 
     try {
       // Send a POST request to the backend to be graded by Gemini
-      const response = await fetch('http://localhost:3000/api/checkAnswer', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/checkAnswer`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         // Sends the question, answer, topic, and style so Gemini has full context

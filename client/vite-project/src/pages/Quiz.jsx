@@ -41,7 +41,7 @@ function Quiz({ onStart }) {
 
     try {
       // Sends a POST request to the backend with the quiz config as the body
-      const response = await fetch("http://localhost:3000/api/generateQuiz", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/generateQuiz`, {
         method: "POST",
         headers: { "Content-Type": "application/json", 
                     Authorization: `Bearer ${token}`,
