@@ -1,5 +1,8 @@
 # LRNR 🐢
 
+<img width="363" alt="Screenshot 2026-03-15 at 7 42 50 PM" src="https://github.com/user-attachments/assets/dd2456dd-d686-4b37-a868-089079b276a9" />
+<img width="380" alt="Screenshot 2026-03-16 at 7 35 36 PM" src="https://github.com/user-attachments/assets/35634b83-8627-4717-bf99-642ab0ad2eaa" />
+
 **Live Demo:** https://main.d2b86jhshsshmn.amplifyapp.com/
 
 **Your guided path to programming enlightenment.**
