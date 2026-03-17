@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 
 
 // ========= ARRAYS ===========
+// Words used in the typing animation in the hero section
 const topicsType = ['Golang', 'AWS', 'JavaScript', 'CI/CD', 'Home Gardens', 'Coffee', 'Finger Foods']
+
+// Data used for the carousel slides (topic name + image)
 const topics = [
   { name: "Golang", logo: "/images/golang.png" },
   { name: "AWS", logo: "/images/aws.png" },
@@ -24,6 +27,7 @@ function Home() {
   const [charIndex, setCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
 
+  // speed settings
   useEffect(() => {
     const currentWord = topicsType[wordIndex];
     const typingSpeed = isDeleting ? 60 : 110; // delete faster than typing
@@ -113,10 +117,13 @@ function Home() {
           
         </div>
     </section>
+
+    {/* infinite scrolling carousel displaying topics */}
     <section id="topic-carousel">
       <div className="carousel-window">
         <div 
           className="carousel-track">
+          {/* repeating topics 3x creates seamless infinite scrolling */}
           {[...topics, ...topics, ...topics].map((t, i) => (
             <div className="topic-slide" key={i}>
               <img src={t.logo} alt={`${t.name} logo`} />
@@ -130,7 +137,7 @@ function Home() {
 
     <section id="begin-banner">
       <h2>LOGIN TO<br></br>TAKE A QUIZ!</h2>
-<Link to='/login'>
+      <Link to='/login'>
       <button className="begin-btn"><p>GET STARTED</p><img src="/images/right-arrow.png" alt="arrow image"></img></button>
       </Link>
     </section>

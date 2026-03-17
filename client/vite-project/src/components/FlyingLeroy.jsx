@@ -8,14 +8,16 @@ export default function FlyingLeroy() {
 
   const timeoutsRef = useRef([]);
 
+  // Helper function to clear all active timeouts
   const clearAllTimeouts = () => {
     timeoutsRef.current.forEach(clearTimeout);
     timeoutsRef.current = [];
   };
 
   useEffect(() => {
-    let cancelled = false;
+    let cancelled = false; // prevents state updates if component unmounts
 
+    // Function that schedules the turtle to fly across the screen
     const schedule = () => {
       if (cancelled) return;
 
@@ -24,17 +26,26 @@ export default function FlyingLeroy() {
       const t1 = setTimeout(() => {
         if (cancelled) return;
 
+        // Random starting and ending vertical positions
+        // This creates a diagonal flight path
         const sTop = Math.random() * 85; // start Y
         const eTop = Math.random() * 85; // end Y (different => diagonal)
 
         setStartTop(sTop);
         setEndTop(eTop);
+        
+        // Randomly choose whether the turtle flies left or right
         setDirection(Math.random() > 0.5 ? "right" : "left");
+
+        //Show turtle
         setVisible(true);
 
+        // Hide the turtle after it finishes flying
         const t2 = setTimeout(() => {
           if (cancelled) return;
           setVisible(false);
+
+        // Schedule the next appearance
           schedule();
         }, 4500);
 
@@ -46,12 +57,14 @@ export default function FlyingLeroy() {
 
     schedule();
 
+     // Cleanup: stop all timeouts if component unmounts
     return () => {
       cancelled = true;
       clearAllTimeouts();
     };
   }, []);
 
+  // If not visible, render nothing
   if (!visible) return null;
 
   return (
@@ -59,6 +72,8 @@ export default function FlyingLeroy() {
       src="/images/flyingturtle.png"
       alt="Flying Leroy"
       className={`flying-leroy ${direction}`}
+
+      // CSS variables used in animations for starting/ending positions
       style={{
         "--start-top": `${startTop}vh`,
         "--end-top": `${endTop}vh`,
